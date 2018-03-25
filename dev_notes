@@ -1,0 +1,282 @@
+$(":checked[name$='DELETE']").parents("tr").css("display","none")
+
+$(".total").children("span").text("100")
+
+$(":checked[name$='DELETE']").parent().prev().text()
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(":checkbox[name$='DELETE']").click(function(){
+    $(this).parents("tr").css("display","none");
+  
+ });
+});
+</script>
+
+
+items-TOTAL_FORMS:2
+items-INITIAL_FORMS:2
+items-MAX_NUM_FORMS:1000
+items-0-id:142
+items-0-quantity:2
+items-1-id:143
+items-1-quantity:1
+items-1-DELETE:on
+update_cart:更新购物车
+
+$.post('/shop/cart/',{'items-0-quantity':3})
+
+$.ajax({
+type:'post',
+async:false,
+url: '/shop/cart/',
+data:{'items-0-quantity':3},
+success:function(msg){
+if(msg == "success"){
+$("#register-form").dialog("close");
+}else{
+alert("服务器异常,请稍后再试");
+}
+},
+error:function(){
+alert("ajax请求失败");
+}
+});
+}
+
+$.ajax({
+type:'post',
+async:false,
+url: '/shop/cart/',
+data:{'items-0-id':142,'items-1-id':144,'items-0-quantity':3,'update_cart':'update','items-TOTAL_FORMS':2,'items-INITIAL_FORMS':2,'items-MAX_NUM_FORMS':1000,'items-1-quantity':1,'items-1-DELETE':'on'},
+})
+
+$("tr").slice(1,-1)
+
+function tmp(){
+String.prototype.format = function () {
+        var args = [].slice.call(arguments);
+        return this.replace(/(\{\d+\})/g, function (a){
+            return args[+(a.substr(1,a.length-2))||0];
+        });
+};
+var init_dict = {};
+init_dict['items-TOTAL_FORMS']=$("#id_items-TOTAL_FORMS").val();
+init_dict['items-INITIAL_FORMS']=$("#id_items-INITIAL_FORMS").val();
+init_dict['items-MAX_NUM_FORMS']=$("#id_items-MAX_NUM_FORMS").val();
+for(x=0;x<init_dict['items-TOTAL_FORMS'];x++)
+{
+  var id = 'items-{0}-id'.format(x);
+  var quantity = 'items-{0}-quantity'.format(x);
+  init_dict[id] = $("input[name={0}]".format(id)).val();
+  init_dict[quantity] = $("input[name={0}]".format(quantity)).val();
+};
+return init_dict;
+}
+
+$.ajax({
+type:'post',
+//async:false,
+url: window.location.href,
+data:{quantity:1,option1:'Large',option2:'Blue'},
+})
+
+var tmp_dict = {};
+var options = $("select[id^=id]");
+for(var i=0;i<options.length;i++){
+  tmp_dict[options[i].name] = options[i].value;
+}
+
+<div class="tb-cart-bone" data-spm="1001001" style="top: 224px; left: 725px;">
+<div class="tb-cart-canvas"></div>
+<div class="tb-cart-content" id="J_CartInfo">
+<a href="#" class="tb-cart-shut"></a>
+<div class="tb-cart-head">添加成功！</div>
+<div class="tb-cart-text">
+<p class="tb-cart-stats">购物车共有<strong>4</strong>种宝贝</p>
+<a href="http://cart.taobao.com/cart.htm" class="J_TCheckOut tb-cart-checkout" title="去购物车结算">去购物车结算</a>
+<a href="#" class="tb-close-page J_ClosePage">再逛逛</a><span></span></div>
+<div class="tb-cart-foot"></div>
+
+<div class="tb-relate-market" data-spm="1001000"><h4>购买此宝贝的用户还购买了：</h4><ul><li><div class="tb-pic tb-s80">
+<a href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;id=14686955083" target="_blank">
+<img src="http://img01.taobaocdn.com/bao/uploaded/i1/T1Cq13XiJqXXcuGL78_100453.jpg_b.jpg" height="80" alt="2014大框 男士太阳镜 驾驶镜偏光镜 蛤蟆镜 墨镜 近视太阳眼镜"></a></div>
+<a class="tb-desc" href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;id=14686955083" title="2014大框 男士太阳镜 驾驶镜偏光镜 蛤蟆镜 墨镜 近视太阳眼镜" target="_blank">2014大框 男士太阳镜 驾驶镜偏光镜 蛤蟆镜 墨镜 近视太阳眼镜</a>
+<span class="tb-price">¥<em>120.00</em></span><span class="tb-sales">30 天售
+<a href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;on_comment=1&amp;id=14686955083" target="_blank">14</a>件</span>
+<span class="tb-icon"></span></li><li><div class="tb-pic tb-s80"><a href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;id=16043720265" target="_blank">
+<img src="http://img01.taobaocdn.com/bao/uploaded/i1/T1BWnKFBRcXXXXXXXX_!!0-item_pic.jpg_b.jpg" height="80" alt="警察正品男士太阳镜 偏光镜潮男驾驶镜 铝镁司机眼镜墨镜太阳眼镜"></a></div>
+<a class="tb-desc" href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;id=16043720265" title="警察正品男士太阳镜 偏光镜潮男驾驶镜 铝镁司机眼镜墨镜太阳眼镜" target="_blank">警察正品男士太阳镜 偏光镜潮男驾驶镜 铝镁司机眼镜墨镜太阳眼镜</a>
+<span class="tb-price">¥<em>100.00</em></span><span class="tb-sales">30 天售<a href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;on_comment=1&amp;id=16043720265" target="_blank">92</a>件</span><span class="tb-icon"></span></li>
+<li><div class="tb-pic tb-s80"><a href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;id=18372642151" target="_blank">
+<img src="http://img01.taobaocdn.com/bao/uploaded/i1/11581024498197919/T16b4wFd0eXXXXXXXX_!!0-item_pic.jpg_b.jpg" height="80" alt="批发 太阳眼镜 男女通用 蛤蟆镜 墨镜 大号黑色盒子拉链便携盒子"></a></div>
+<a class="tb-desc" href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;id=18372642151" title="批发 太阳眼镜 男女通用 蛤蟆镜 墨镜 大号黑色盒子拉链便携盒子" target="_blank">批发 太阳眼镜 男女通用 蛤蟆镜 墨镜 大号黑色盒子拉链便携盒子</a>
+<span class="tb-price">¥<em>5.00</em></span><span class="tb-sales">30 天售<a href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;on_comment=1&amp;id=18372642151" target="_blank">46</a>件</span>
+<span class="tb-icon"></span></li><li><div class="tb-pic tb-s80"><a href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;id=19786859344" target="_blank"><img src="http://img04.taobaocdn.com/bao/uploaded/i4/T19WaaFvJfXXXXXXXX_!!0-item_pic.jpg_b.jpg" height="80"
+alt="2014彩膜反光太阳镜 男 女 潮 蛤蟆镜 司机驾驶眼镜 近视太阳眼镜"></a></div><a class="tb-desc" href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;id=19786859344" title="2014彩膜反光太阳镜 男 女 潮 蛤蟆镜 司机驾驶眼镜 近视太阳眼镜" target="_blank">
+2014彩膜反光太阳镜 男 女 潮 蛤蟆镜 司机驾驶眼镜 近视太阳眼镜</a><span class="tb-price">¥<em>580.00</em></span><span class="tb-sales">30 天售
+<a href="http://item.taobao.com/item.htm?scm=1007.10016.2079.i16804219148&amp;on_comment=1&amp;id=19786859344" target="_blank">6</a>件</span>
+<span class="tb-icon"></span></li></ul></div></div></div>
+
+
+<div class="tb-cart-bone" data-spm="1001001" style="top: 224px; left: 725px;">
+<div class="tb-cart-canvas"></div>
+<div class="tb-cart-content" id="J_CartInfo">
+<a href="#" class="tb-cart-shut"></a>
+<div class="tb-cart-head">添加成功！</div>
+<div class="tb-cart-text">
+<p class="tb-cart-stats">购物车共有<strong>4</strong>种宝贝</p>
+<a href="http://cart.taobao.com/cart.htm" class="J_TCheckOut tb-cart-checkout" title="去购物车结算">去购物车结算</a>
+<a href="#" class="tb-close-page J_ClosePage">再逛逛</a><span></span></div>
+<div class="tb-cart-foot"></div>
+</div>
+
+
+
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script',('http://static11.elemecdn.com')+'/forward/js/vendor/analytics.js','ga');
+
+      ga('create','UA-2513347-3',{'cookieDomain':'.ele.me'});
+      ga('send','pageview','cart_checkout/');
+      
+      var isReady = false,
+          readyList = null;
+      function domReady(callback) {
+        if (isReady) {
+          setTimeout(callback);
+          return;
+        }
+
+        if (readyList) {
+          readyList.push(callback);
+          return;
+        }
+
+        readyList = [callback];
+        var completed = function(event) {
+          if (document.addEventListener || event.type == 'load' || document.readyState === 'complete') {
+            detach();
+            realReady();
+          }
+        };
+
+        if (document.addEventListener) {
+          document.addEventListener('DOMContentLoaded', completed, false);
+          window.addEventListener('load', completed, false);
+        } else {
+          document.attachEvent('onreadystatechange', completed);
+          window.attachEvent('onload', completed);
+
+          var top = false;
+          try {
+            top = window.frameElement == null && document.documentElement;
+          } catch(e) {}
+
+          if (top && top.doScroll) {
+            (function doScrollCheck() {
+              if (!isReady) {
+                try {
+                  top.doScroll('left');
+                } catch(e) {
+                  return setTimeout(doScrollCheck, 50);
+                }
+                detach();
+                realReady();
+              }
+            })();
+          }
+        }
+
+        function detach() {
+          if (document.addEventListener) {
+            document.removeEventListener('DOMContentLoaded', completed, false);
+            window.removeEventListener('load', completed, false);
+          } else {
+            document.detachEvent('onreadystatechange', completed);
+            window.detachEvent('onload', completed);
+          }
+        }
+
+        function realReady() {
+          if (!document.body) {
+            setTimeout(realReady);
+            return;
+          }
+          isReady = true;
+          var callback;
+          while (callback = readyList.shift()) {
+            callback();
+          }
+        }
+      }
+      domReady(function(){
+        readyTime = new Date().getTime() - startTime;
+        if(readyTime < 10000 && readyTime > 0){
+          ga('send', 'event', 'ReadyTime', ELEME.route, '', readyTime);
+        }
+      });
+    
+
+    <div class="bs-modal-dialog checkout-auth-modal">
+    <div class="bs-modal-content">
+      <div class="bs-modal-header with-underline">
+        <h4 class="bs-modal-title">用户手机验证</h4>
+      </div>
+      <div class="bs-modal-body">
+        <p class="ui-alert warning" style="margin-top:-20px"><i class="icon-warning"></i>您的手机首次在此电脑下单，请先验证手机号码。</p>
+        <h5 class="checkout-auth-title checkout_auth_title">验证码已发送至<span class="auth_tel">13270806549</span></h5>
+        <div class="group">
+          <div class="checkout-auth-fillform">
+            <input class="checkout-auth-input vcode_input" type="text" maxlength="6" placeholder="请输入短信验证码">
+            <a class="checkout-auth-btn btn-send vcode_send" role="button">重新发送<span class="countdown vcode_countdown ui_hide">0</span></a>
+          </div>
+          <a class="ui-btn btn-submit checkout-auth-btn vcode_confirm" role="button">提交验证</a>
+        </div>
+        <p class="mt10 mb20">
+                  </p>
+        <div class="checkout-auth-dialing">
+          <p class="mb5">收不到短信？使用
+            <a class="dialing-btn voice_btn">语音验证码
+              <span class="resend_voice ui_hide">(<span class="voice_countdown"></span>秒后可重新拨打)</span>
+            </a>
+          </p>
+          <p class="clear-margin voice_tip ui_hide">电话拨打中…请留意来自<span class="dialing-number">4000557117</span> 或者 <span class="dialing-number"><span class="skype_c2c_print_container notranslate">021-31234566</span><span id="skype_c2c_container" class="skype_c2c_container notranslate" dir="ltr" tabindex="-1" onmouseover="SkypeClick2Call.MenuInjectionHandler.showMenu(this, event)" onmouseout="SkypeClick2Call.MenuInjectionHandler.hideMenu(this, event)" onclick="SkypeClick2Call.MenuInjectionHandler.makeCall(this, event)" data-numbertocall="+862131234566" data-isfreecall="false" data-isrtl="false" data-ismobile="false"><span class="skype_c2c_highlighting_inactive_common" dir="ltr" skypeaction="skype_dropdown"><span class="skype_c2c_textarea_span" id="non_free_num_ui"><img width="0" height="0" class="skype_c2c_logo_img" src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/call_skype_logo.png"><span class="skype_c2c_text_span">021-31234566</span><span class="skype_c2c_free_text_span"></span></span></span></span></span> 的电话</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+create event wnirefreshpagetime on schedule every 1 day starts "2014-12-01 10:00:00" 
+ON COMPLETION PRESERVE DO 
+update pages_page set publish_date=concat(curdate()," 02:00:00"),expiry_date=concat(curdate()," 04:00:00") where slug="eshop/rectea";
+
+update pages_page set publish_date="1970-01-01 00:00:00",expiry_date="2099-01-01 00:00:00" where slug="eshop/rectea";
+
+update pages_page set publish_date=concat(curdate()," 01:00:00"),expiry_date=concat(curdate()," 23:00:00") where slug="eshop/rectea";
+
+performance:
+1. memcached
+* yum install memcached
+* memcached -d -m 64 -p 11211 -u root
+* pip2.7 install python-memcached
+* CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+* sudo memcached -d stop -u root
+sudo memcached -d restart -u root
+
+
+<div style="width: 100%; min-width: 1000px;" class="wniweixinhide">
+<p><b><img src="/static/media/uploads/pagepics/zaoshi1400x400.png" style="width: 100%;" height="400" />&nbsp;</b></p>
+</div>
+
+<strong><br /></strong>
+
+ab -c 50 -n 1000 http://efoodin.com/
+ab -c 100 -n 1000 http://efoodin.com/

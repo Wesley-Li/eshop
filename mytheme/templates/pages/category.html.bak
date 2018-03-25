@@ -1,0 +1,74 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags shop_tags i18n endless static %}
+{% block body_id %}category{% endblock %}
+
+
+{% block main %}{{ block.super }}
+
+{% editable page.category.content %}
+{{ page.category.content|safe }}
+{% endeditable %}
+
+{% if child_categories %}
+<div class="row shop-category-list">
+{% if settings.SHOP_CATEGORY_USE_FEATURED_IMAGE %}
+    {% for category in child_categories %}
+    <div class="col-xs-6 col-sm-4 col-lg-3">
+    <a href="{{ category.get_absolute_url }}" class="thumbnail">
+        {% if category.featured_image %}
+        <img src="{{ MEDIA_URL }}{% thumbnail category.featured_image 148 148 %}" />
+        {% else %}
+        <div class="placeholder"></div>
+        {% endif %}
+        <div class="caption">
+            <h4>{{ category.title }}</h4>
+        </div>
+    </a>
+    </div>  
+    {% endfor %}
+{% else %}
+    {% for category in child_categories %}
+    <div class="col-xs-6 col-sm-4 col-lg-3">
+    <a href="{{ category.get_absolute_url }}" class="thumbnail">
+        <div class="caption"><h4>{{ category.title }}</h4></div>
+    </a>
+    </div>
+    {% endfor %}
+{% endif %}
+</div>
+{% endif %}
+
+{% if products.paginator.count != 0 %}
+
+<form class="product-sorting" role="form" style="margin-bottom:35px;">
+    <div class="form-group">
+    <label class="control-label" for="sorting-select">{% trans "Sort by" %}</label>
+        <select onchange="location.href = this[this.selectedIndex].value;" class="form-control" id="sorting-select">
+        {% for name, option in settings.SHOP_PRODUCT_SORT_OPTIONS %}
+        {% if "rating" not in option or settings.SHOP_USE_RATINGS %}
+        <option{% if option == products.sort_by %} selected{% endif %}
+            value="{{ category.get_absolute_url }}?sort={{ option }}{{ querystring }}">
+            {{ name }}
+        </option>
+        {% endif %}
+        {% endfor %}
+        </select>
+    </div>
+</form>
+{% include page_template %}
+{% block extra_js %}
+{{ block.super }}
+    <script src="{% static 'endless_pagination/js/endless-pagination.js' %}"></script>
+    <!-- script>$(document).ready(function() {
+        $.endlessPaginate({
+            paginateOnScroll: true,
+            //paginateOnScrollMargin: 20
+        });
+    });</script-->
+    <script>$.endlessPaginate({paginateOnScroll: true,paginateOnScrollMargin: 200,paginateOnScrollChunkSize: 5});</script>
+{% endblock %}
+{% pagination_for products %}
+{% endif %}
+
+{% endblock %}

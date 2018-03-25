@@ -1,0 +1,94 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>e食部落</title>
+    <meta name="apple-mobile-web-app-title" content="e食部落">
+    <meta name="keywords" content="efoodin,e食部落,餐饮">
+    <meta name="description" content="efoodin,e食部落,新鲜,健康,好吃,卓越吃货体验!">
+    
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'weixin/css/main2.css' %}" rel="stylesheet">
+    <script src="{% static "js/jquery-1.8.3.js" %}"></script>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+    <script src="{% static "js/touchwipe.js" %}"></script>
+    <script src="{% static "weixin/js/wxhome.js" %}"></script>
+</head>
+<body scroll="no">
+    <div class="Cwrap">
+        
+    <div class="IN_colorful">
+        <div class="pure-g wnitop">
+            <div class="pure-u-8-24 ctxt">e食部落</div>
+        </div>
+    <div class="row" style="margin-left:0;margin-right:0;">
+            <div class="box">
+                <div class="col-lg-12 text-center" style="padding-left:0;padding-right:0;">
+                    <div id="carousel-example-generic" class="carousel slide" style="width:100%;min-width:320px;">
+                        <!-- Indicators -->
+                        
+                        <ol class="carousel-indicators hidden-xs">
+                        <li data-target="#carousel-example-generic" data-slide-to="0"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="width:100%;min-width:320px;height:170px;">
+                            <div class="item active" style="height:100%;">
+                                <a href="#"><img class="img-responsive img-full" src="{% static 'weixin/img/banner1.png' %}"  alt="" style="width:100%;height:100%;display:block;" ></a>
+                            </div>
+                            <div class="item" style="height:100%;">
+                                <a href="#"><img class="img-responsive img-full" src="{% static 'weixin/img/banner3.png' %}"  alt="" style="width:100%;height:100%;display:block;" ></a>
+                            </div>
+                            <div class="item" style="height:100%;">
+                                <a href="#"><img class="img-responsive img-full" src="{% static 'weixin/img/banner1480.png' %}"  alt="" style="width:100%;height:100%;display:block;" ></a>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev" style="background-image:none;">
+                            <span class="icon-prev"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next" style="background-image:none;">
+                            <span class="icon-next"></span>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+       </div>
+    
+    <div class="quicklink">
+        <div class="inner Lposr">
+
+            <div class="pure-g ptop">
+                <div class="wni-7-24-left col-xs-6"><div style="float:left;background-color:white;"><a href="/wxwrap/#sichu" class="item"><i class="icon sichu"></i></a></div><div class="innertext"><span>私厨</span></div></div>
+                <div class="wni-7-24-left col-xs-6"><div style="float:left;background-color:white;"><a href="/wxwrap/#qinzi" class="item"><i class="icon qinzi"></i></a></div><div class="innertext"><span>亲子</span></div></div>    
+            </div>
+            <div class="pure-g Lpt20">
+                <div class="wni-7-24-left col-xs-6 wnigray"><div style="float:left;background-color:white;"><a href="/wxwrap/#paidui" class="item"><i class="icon paidui"></i></a></div><div class="innertext"><span>派对<br>敬请期待</span></div></div>
+                <div class="wni-7-24-left col-xs-6 wnigray"><div style="float:left;background-color:white;"><a href="javascript:void(0);" class="item"><i class="icon shiling"></i></a></div><div class="innertext"><span>时令<br>敬请期待</span></div></div>
+            </div>
+            <div class="pure-g Lpt20">
+                <div class="wni-7-24-left col-xs-6 wnigray"><div style="float:left;background-color:white;"><a href="javascript:void(0);" class="item"><i class="icon jisu"></i></a></div><div class="innertext"><span>急速<br>敬请期待</span></div></div>
+                <div class="wni-7-24-left col-xs-6 wnigray"><div style="float:left;background-color:white;"><a href="javascript:void(0);" class="item"><i class="icon diy"></i></a></div><div class="innertext"><span>DIY<br>敬请期待</span></div></div>
+            </div>
+            <div class="pure-g Lpt20">
+                <div class="wni-7-24-left col-xs-6 wnigray"><div style="float:left;background-color:white;"><a href="javascript:void(0);" class="item"><i class="icon bailing"></i></a></div><div class="innertext"><span>白领<br>敬请期待</span></div></div>
+                <div class="wni-7-24-left col-xs-6 wnigray"><div style="float:left;background-color:white;"><a href="javascript:void(0);" class="item"><i class="icon dachu"></i></a></div><div class="innertext"><span>大厨<br>敬请期待</span></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="brand Lmt20">
+        <div class="pure-g">
+            <div class="pure-u-6-24 col-xs-3"><a href="#"><i class="brand_shouye"></i><br><span>首页</span></a></div>
+            <div class="pure-u-6-24 col-xs-3"><a href="/wxwrap"><i class="brand_fenlei"></i><br><span>分类</span></a></div>
+            <div class="pure-u-6-24 col-xs-3"><a href="/blog"><i class="brand_dingdan"></i><br><span>社区</span></a></div>
+            <div class="pure-u-6-24 col-xs-3"><a href="/account"><i class="brand_wode"></i><br><span>我的</span></a></div>
+        </div>
+    </div>
+    </div>
+</div>
+</body></html>

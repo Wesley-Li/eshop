@@ -1,0 +1,115 @@
+{% load staticfiles shop_tags %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link rel='stylesheet' href="{% static 'css/bootstrap.css' %}">
+<!-- link rel='stylesheet' href="{% static 'css/bootstrap-theme.css' %}"-->
+<style type="text/css">
+body {
+ overflow-x:hidden;
+}
+.wninav {
+   font-weight:bold;
+   text-align: center;
+   margin-top:0 ! important;
+   padding-bottom:15px;
+   padding-top:15px;
+}
+
+a:hover {text-decoration:none;}
+
+a .wninav {
+    color:#757575;
+    /*
+    text-decoration:none;
+    width:100%;
+    height:100%;
+    */
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+.sep {border:1px solid #e0e0e0;}
+
+.wnileft{
+    padding-right:0;
+    height:100%;
+    background-color:#eeeeee;
+    font-size:18px;
+    font-family:黑体;
+    /*color:#757575;*/
+}
+
+* {font-family:黑体;}
+
+.top {height:40px;background-color:#fdcf43;text-align:center;color:white;font-size:20px;padding-top:5px;}
+/*
+//.wninav:focus {background-color:white;outline:0;color:#ffc000;}
+//.wninav:focus a {color:#ffc000}
+*/
+.footer{height:45px;width:100%;background-color:white;position:fixed;z-index:1;bottom:0;}
+.footer a {padding:5px;background-color:#ed3d3d;margin-top:auto;margin-bottom:auto;float:right;color:white;margin-top:10px;margin-bottom:10px;padding-left:15px;padding-right:15px;}
+.carttotal {width:30%;float:left;margin-top:10px;margin-left:15px;}
+/*.footer img {float:left;}*/
+.footer .imgwrap {border:0;border-radius:100%;margin-left:2%;text-align:center;padding-left:0px;padding-right:0;}
+</style>
+
+<script src="{% static "js/jquery-1.8.3.js" %}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//alert(window.location.href);
+	function updatetotal(){
+		$.ajax({
+    		type:'get',
+    		async:false,
+    		url: "/ordertotal/",
+    		//data:tmp_dict,
+    		success: function(html,status){$(".ttxt").html(html)}
+    		});
+
+	};
+	$('.wninav').click(function(){
+        //$(this).parent().siblings().children('.wninav').css({'background-color':'#eeeeee','color':'#757575'});
+        $('.wninav').css({'background-color':'#eeeeee','color':'#757575'});
+		//$(this).css('border-right-width',0);
+		$(this).css({'background-color':'white','outline':0,'color':'#ffc000'});
+		updatetotal();
+		//$(this).children('a').css({'color':'#ffc000'});
+		//return false;
+	})
+	//$('.wninav').focus(function(){$('.wninav').unbind('focus');$(this).click()});
+	if(window.location.hash ==""){$('#sichu').click()}
+	else{$('#'+window.location.hash.slice(1)).click()}
+})
+function doAjaxCall(wniurl){
+		$.ajax({
+	        'async': false,
+	        'url': wniurl,
+	        'error': function (data) { console.log(data); },
+	        'success': function (data) {
+	        	//alert(data);
+	            $("#cont").html(data);
+	        }
+	    });
+    };
+</script>
+</head>
+<body>
+    <div style="margin-bottom:45px;">
+    <div class='top'><span>分类</span></div>
+    <div class="row" style="margin-right:0;">
+        <div class="col-xs-2 col-md-2 wnileft">
+          	
+          	<a href="javascript:doAjaxCall('/sichu');" target="cont" style='border-right-width:0;'><div id="sichu" class="wninav" tabindex="0">私厨</div></a>
+	           <div class="sep"></div>
+	        <a href="javascript:doAjaxCall('/qinzi');" target="cont" style='border-right-width:0;'><div id="qinzi" class="wninav" tabindex="1">亲子</div></a>
+	           <div class="sep" ></div>
+	        <a href="javascript:doAjaxCall('/paidui');" target="cont" style='border-right-width:0;'><div id="paidui" class="wninav" tabindex="2">派对</div></a>
+           
+        </div>
+        <div class="col-xs-10 col-md-10" style="padding-left:0;">
+            <div id="cont" style="width:100%;height:100%;border-width:0;"></div>
+        </div>
+    </div>
+    </div>
+    <div class='footer'><div class="imgwrap col-xs-1 col-md-1"><div><img src="{% static 'weixin/cart38.png' %}"></div></div><div class="carttotal">总计: <span class="ttxt"></span></div><a href="/shop/cart"><span>去结算</span></a></div>
+</body>

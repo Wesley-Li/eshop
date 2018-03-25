@@ -1,0 +1,11 @@
+export LANG='zh_CN.utf8'
+export LC_ALL='zh_CN.utf8'
+
+
+
+1. yum install openssl openssl-devel
+2. yum install bz2-devel
+3. install python2.7.6
+4. pip install cartridge
+
+mysql change timezone to +08:00

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags %}
+
+{% block extra_js %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".input_id_password1").css("display","none");
+    $(".input_id_password2").css("display","none");
+    $(".input_id_gender").css("display","none");
+    $(".input_id_profile_captcha_1").css("display","none");
+    $(".help-block").css("display","none");
+    $("#id_email").attr("disabled","disabled");
+    $("#id_username").attr("disabled","disabled");
+    $("#id_date_of_birth").attr("disabled","disabled");
+});
+</script>
+{% endblock %}
+{% block main %}
+{% fields_for form %}
+<a class="btn btn-default btn-lg pull-left" href="{% url "shop_order_history" %}">{% trans "View past orders" %}</a>
+<a class="btn btn-default btn-lg pull-left" href="{% url "my_discount" %}">我的优惠券</a>
+
+{% endblock %}

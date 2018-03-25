@@ -1,0 +1,98 @@
+{% load staticfiles %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="{% static 'scenario/css/bgy.css' %}" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{%static 'scenario/js/scriptc.js' %}"></script>
+</head>
+<div id="what"></div>
+<div class="warp3 article" id="art3">
+<div class="navbody">
+   	  	<div class="con1"></div>
+        <div class="con2">
+        	<div class="content">
+        		
+                <div class="drama-poster">
+                    <ul>
+                       <li class="show-poster-3">
+                       		<div><img src="{% static 'scenario/images/win.png' %}" style="float:left;"><div class="wz"><a href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">民间美食, 匠人之心</a></div></div><div class="tu"><div class="pho"><img src="{% static 'scenario/images/sichu.png' %}"></div></div>
+                            <div class="con">
+                            私厨描述：<br>
+1、私家烘焙，私房菜，……<br>
+2、搜罗民间美食，满足吃货的多样性和个性化需求<br>
+……<br><a class="red" href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">详 情</a>
+                            </div>
+                       </li><li class="show-poster-3">
+                       		<div><img src="{% static 'scenario/images/win.png' %}" style="float:left;"><div class="wz"><a href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">童年记忆, 娓娓道来</a></div></div><div class="tu"><div class="pho"><img src="{% static 'scenario/images/qinzi.png' %}"></div></div>
+                            <div class="con">
+                            亲子描述：<br>
+1.手工DIY，个性蛋糕，生日Party<br>
+2.专属小朋友的卓越餐饮体验服务<br>
+……<br><a class="red" href="http://jobs.zhaopin.com/565085922250619.htm" target="_blank">详 情</a>
+                            </div>
+                       </li><li class="show-poster-3">
+                       		<div><img src="{% static 'scenario/images/win.png' %}" style="float:left;"><div class="wz"><a href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">专属定制, 精细服务</a></div></div><div class="tu"><div class="pho"><img src="{% static 'scenario/images/paidui.png' %}"></div></div>
+                            <div class="con">
+                            派对描述：<br>
+1、婚礼生日宴会甜品台<br>
+2、定制专属于您喜庆的卓越餐饮体验服务<br>
+……<br><a class="red" href="http://jobs.zhaopin.com/565085922250036.htm" target="_blank">详 情</a>
+                            </div>
+                       </li><li class="show-poster-3">
+                       		<div><img src="{% static 'scenario/images/win.png' %}" style="float:left;"><div class="wz"><a href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">光速到达, 想吃就吃</a></div></div><div class="tu"><div class="pho"><img class="gray" src="{% static 'scenario/images/jisu.png' %}"></div></div>
+                            <div class="con">
+                            急速描述：<br>
+1、下午茶，宵夜，KTV<br>
+2、想吃就吃，专业食品级冷链物流团队，专车服务<br>
+3、一小时到货，风一样的卓越餐饮体验服务<br>
+……<br><a class="red" href="http://jobs.zhaopin.com/565085922250694.htm?ssidkey=y&amp;ss=201&amp;ff=03" target="_blank">详 情</a>
+                            </div>
+                       </li><br>
+                       <li class="show-poster-3 current">
+                       		<div><img src="{% static 'scenario/images/win.png' %}" style="float:left;"><div class="wz"><a href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">当季热门, 时令特供</a></div></div><div class="tu"><div class="pho"><img class="gray" src="{% static 'scenario/images/shiling.png' %}"></div></div>
+                            <div class="con">
+                            时令描述：<br>
+1、小龙虾，大闸蟹……<br>
+2、时令美食，在最适合的时间满足吃货的渴望<br>
+……<br><a class="red" href="http://jobs.zhaopin.com/565085922250681.htm?ssidkey=y&amp;ss=201&amp;ff=03" target="_blank">详 情</a>
+                            </div>
+                       </li><li class="show-poster-3">
+                       		<div><img src="{% static 'scenario/images/win.png' %}" style="float:left;"><div class="wz"><a href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">企业定制, 高端大气</a></div></div><div class="tu"><div class="pho"><img class="gray" src="{% static 'scenario/images/bailing.png' %}"></div></div>
+                            <div class="con">
+                            白领描述：<br>
+1．“员工关怀”、“表白套餐”、“浪漫套餐”<br>
+2．专属于企业白领的卓越餐饮体验服务<br>
+……<br><a class="red" href="http://jobs.zhaopin.com/565085922250618.htm?ssidkey=y&amp;ss=201&amp;ff=03" target="_blank">详 情</a>
+                            </div>
+                       </li><li class="show-poster-3">
+                       		<div><img src="{% static 'scenario/images/win.png' %}" style="float:left;"><div class="wz"><a href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">五星特级, 饕餮专享</a></div></div><div class="tu"><div class="pho"><img src="{% static 'scenario/images/dachu.png' %}"></div></div>
+                            <div class="con">
+                            大厨描述：<br>
+1、金陵饭店，小厨娘淮扬菜。。。<br>
+2、谁说家中不能请到“米其林”大厨”<br>
+……<br><a class="red" href="http://jobs.zhaopin.com/565085922250676.htm?ssidkey=y&amp;ss=201&amp;ff=03" target="_blank">详 情</a>
+                            </div>
+                       </li><li class="show-poster-3">
+                       		<div><img src="{% static 'scenario/images/win.png' %}" style="float:left;"><div class="wz"><a href="http://jobs.zhaopin.com/565085922250693.htm" target="_blank">帮您实现美食想象</a></div></div><div class="tu"><div class="pho"><img class="gray" src="{% static 'scenario/images/DIY.png' %}"></div></div>
+                            <div class="con">
+                            岗位描述：<br>
+1、积极进行企业文化宣传，企业品牌形象维护，公关维护。<br>
+2、负责公司日常活动的策划与执行，协助活动现场工作顺利进行；<br>
+3配合进行公司品牌部各项活动的策划、统筹及方案制定、活动分工<br>
+……<br><a class="red" href="http://jobs.zhaopin.com/565085922250680.htm?ssidkey=y&amp;ss=201&amp;ff=03" target="_blank">详 情</a>
+                            </div>
+                       </li>             
+                    </ul>    
+                </div>
+                {% comment %}
+                <ul class="drama-slide">
+                    <li class="prev"><a href="javascript:void(null)" title="上翻">上翻</a></li>
+                    <li class="next"><a href="javascript:void(null)" title="下翻">下翻</a></li>
+                </ul>
+                {% endcomment %}
+                
+        	</div>
+        </div>
+</div>
+</div>
+</html>

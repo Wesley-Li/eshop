@@ -1,0 +1,55 @@
+body 
+{
+	//overflow-x:hidden;
+}
+.row {
+	margin-left:0;
+	margin-right:0;
+}
+.col-md-7,.col-lg-12{
+	padding-left:0;
+	padding-right:0;
+}
+footer{
+	margin-top:0;
+	border-width:0;
+	background-color:#2a2a2a;
+	color:white;
+	padding-top:50px;
+}
+
+.container
+{
+	width:100%;//80%;
+	margin-left: 0; //10%;
+	margin-right:0;//10%;
+	padding:0;
+}
+
+.navbar .container
+{
+	width:80%;
+	margin-left: 10%;
+	margin-right:10%;
+}
+
+@media screen and (min-width: 768px) 
+{ 
+	.wniprodcont {
+		padding-left:10%;
+		}
+	.wniprodrow {
+		padding-left:10%;
+	}
+}
+
+@media screen and (max-width: 768px) 
+{ 
+	body {
+		padding-top:0px;
+	}
+	.product-sorting {
+		margin-top:0;
+		margin-bottom:5px ! important;
+	}
+}

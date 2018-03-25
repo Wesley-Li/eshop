@@ -1,0 +1,184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-16 18:08+0800\n"
+"PO-Revision-Date: 2014-05-16 20:27+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+
+#: .\settings.py:120
+msgid "English"
+msgstr ""
+
+#: .\settings.py:121
+msgid "Chinese"
+msgstr ""
+
+#: .\mezzanine_blocks\admin.py:26 .\mezzanine_blocks\admin.py:43
+#: .\mezzanine_blocks\admin.py:61
+msgid "Advanced data"
+msgstr ""
+
+#: .\mezzanine_blocks\category.py:33
+msgid "Block category"
+msgstr ""
+
+#: .\mezzanine_blocks\category.py:34
+msgid "Block categories"
+msgstr ""
+
+#: .\mezzanine_blocks\defaults.py:7
+msgid "Block cache prefix."
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:16
+msgid "Login required"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:16
+msgid "If checked, only logged in users can view this page"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:17
+msgid "Show title"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:17
+msgid "If checked, show block title"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:33
+msgid "Block"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:34
+msgid "Blocks"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:41
+msgid "Rich Block"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:42
+msgid "Rich Blocks"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:48
+msgid "Image"
+msgstr "Image"
+
+#: .\mezzanine_blocks\models.py:49
+msgid "Description"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:50
+msgid "External URL"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:50
+msgid "Optional URL."
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:52
+msgid "Height"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:52
+msgid "Height in pixels."
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:53
+msgid "Width"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:53
+msgid "Width in pixels."
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:54
+msgid "Quality"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:59
+msgid "Image Block"
+msgstr ""
+
+#: .\mezzanine_blocks\models.py:60
+msgid "Image Blocks"
+msgstr ""
+
+#: .\mezzanine_blocks\views.py:41
+msgid "You are not allowed to edit this block"
+msgstr ""
+
+#: .\mytheme\models.py:29
+msgid "Home page"
+msgstr ""
+
+#: .\mytheme\models.py:30
+msgid "Home pages"
+msgstr ""
+
+#: .\mytheme\models.py:37 .\mytheme\models.py:47
+msgid "Image"
+msgstr ""
+
+#: .\mytheme\models.py:61
+msgid "Portfolio"
+msgstr ""
+
+#: .\mytheme\models.py:62
+msgid "Portfolios"
+msgstr ""
+
+#: .\mytheme\templates\base.html.py:55
+msgid "Toggle Navigation"
+msgstr ""
+
+#: .\mytheme\templates\base.html.py:135
+msgid "Powered by"
+msgstr "技术支持"
+
+#: .\mytheme\templates\base.html.py:138
+msgid "and"
+msgstr ""
+
+#: .\mytheme\templates\base.html.py:147
+msgid "View Mobile Site"
+msgstr ""
+
+#: .\mytheme\templates\index.html.py:4 .\mytheme\templates\index.html.py:5
+#: .\mytheme\templates\index.html.py:8
+msgid "Home"
+msgstr ""
+
+#: .\mytheme\templates\index.html.py:12
+msgid ""
+"\n"
+"<h2>Congratulations!</h2>\n"
+"<p>\n"
+"    Welcome to Willway website.\n"
+"    Here are some quick links to get you started:\n"
+"</p>\n"
+"<ul>\n"
+"    <li><a href=\"/admin/\">Log in to the admin interface</a></li>\n"
+"    <li><a href=\"http://mezzanine.jupo.org/docs/content-architecture.html\">Creating custom page types</a></li>\n"
+"    <li><a href=\"http://mezzanine.jupo.org/docs/frequently-asked-questions.html#templates\">Modifying HTML templates</a></li>\n"
+"    <li><a href=\"http://mezzanine.jupo.org/docs/frequently-asked-questions.html#why-isn-t-the-homepage-a-page-object-i-can-edit-via-the-admin\">Changing this homepage</a></li>\n"
+"    <li><a href=\"http://mezzanine.jupo.org/docs/frequently-asked-questions.html\">Other frequently asked questions</a></li>\n"
+"    <li><a href=\"http://mezzanine.jupo.org/docs/configuration.html#default-settings\">Full list of settings</a></li>\n"
+"    <li><a href=\"http://mezzanine.jupo.org/docs/deployment.html\">Deploying to a production server</a></li>\n"
+"</ul>\n"
+msgstr ""
+

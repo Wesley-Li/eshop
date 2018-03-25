@@ -1,0 +1,214 @@
+{% extends "shop/base.html" %}
+{% load staticfiles mezzanine_tags shop_tags rating_tags i18n %}
+
+{% block meta_title %}{{ product.meta_title }}{% endblock %}
+{% block body_id %}category{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% for keyword in product.keywords.all %}
+    {% if not forloop.first %}, {% endif %}
+    {{ keyword }}
+{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ product.description }}
+{% endmetablock %}{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "mezzanine/css/magnific-popup.css" %}">
+<link rel="stylesheet" href="{% static "css/jquery-ui-1.10.3.custom.css" %}">
+<!-- link rel="stylesheet" href="{% static "css/easyzoom.css" %}"-->
+<!-- link rel="stylesheet" href="{% static "css/wniproduct.css" %}"-->
+<style type="text/css">
+.prodbak {float:right;}
+@media screen and (max-width: 768px) {
+  .prodbak {
+    position:fixed;
+    z-index:1;
+    right:5%;
+  }
+}
+</style>
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static "mezzanine/js/magnific-popup.js" %}"></script>
+<script src="{% static "js/jquery-ui-1.10.3.custom.min.js" %}"></script>
+<!-- script src="{% static "js/easyzoom.js" %}"></script-->
+<script src="{% static 'js/productwords.js' %}"></script>
+{% endblock %}
+
+{% block extra_head %}
+<script>var variations = {{ variations_json|safe }};</script>
+<script src="{% static "cartridge/js/product_variations.js" %}"></script>
+{% endblock %}
+
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<li>{{ product.title }}</li> 
+{% endblock %}
+
+
+{% block title %}
+{% editable product.title %}{{ product.title }}{% endeditable %}
+{% endblock %}
+
+{% block main %}
+<div class="wniprodrow">
+<div style="font-size:16px;margin:15px 0px;font-family: '微软雅黑', '黑体', arial, sans-serif;padding-right:10%;"><b>{{ product.title }}<a class="prodbak" onclick="javascript:history.go(-1);">返回</a></b></div>
+{% if images %}
+<div class='wniprodrowleft col-xs-12 col-sm-6' style="max-width:600px;">
+<!-- div class='wniprodrowleft' style="width:50%;float:left;min-width:200px;max-width:450px;"-->
+{% spaceless %}
+<ul id="product-images-large" class="list-unstyled list-inline">
+    <div id="carousel-example-generic" class="carousel slide" style="width:100%;">
+                        <!-- Indicators -->
+                        
+                        <ol class="carousel-indicators hidden-xs">
+                        {% for slide in images %}
+                        <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" style='margin-right:10px;'></li>
+                        {% endfor %}
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="width:100%;">
+                            
+                            {% for slide in images %}
+                            <div class="item {% if forloop.first %}active{% endif %}" style="height:100%;">
+                                <a>
+                                <img class="img-responsive img-full" src="{{MEDIA_URL }}{{ slide.file }}"  alt="" style="display:block;" >
+                                </a>
+                                <!-- img class="img-responsive img-full" src="{{ MEDIA_URL }}{% thumbnail slide.image 1920 690 %}"  alt=""-->
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev" style="background-image:none;">
+                            <span class="icon-prev"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next" style="background-image:none;">
+                            <span class="icon-next"></span>
+                        </a>
+    </div>
+    {% comment %}
+    {% for image in images %}
+    <li id="image-{{ image.id }}-large"{% if not forloop.first %}style="display:none;"{% endif %} class="easyzoom easyzoom--adjacent" >
+        <a class="product-image-large" href="{{ MEDIA_URL }}{{ image.file }}">
+            <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail image.file 0 300 %}" class="img-thumbnail img-responsive">
+        </a>
+    </li>
+    {% endfor %}
+    {% endcomment %}
+</ul>
+{% comment %}
+{% if images|length != 1 %}
+<ul id="product-images-thumb" class="list-unstyled list-inline">
+    {% for image in images %}
+    <li>
+        <a class="thumbnail" id="image-{{ image.id }}" href="{{ MEDIA_URL }}{{ image.file }}">
+            <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail image.file 75 75 %}">
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endcomment %}
+
+{% endspaceless %}
+</div>
+{% endif %}
+
+<div class="wniprodrowright col-xs-12 col-sm-6" style="">
+<!-- div class="wniprodrowright" style="width:50%;float:left;"-->
+{% if product.available and has_available_variations %}
+<ul id="variations" class="list-unstyled">
+    {% for variation in variations %}
+    <li id="variation-{{ variation.sku }}"
+        {% if not variation.default %}style="display:none;"{% endif %}>
+        {% if variation.has_price %}
+            {% if variation.on_sale %}
+                <span class="old-price">{{ variation.unit_price|currency }}</span>
+                <b style="color:#ffc001;">{% trans "On sale:" %}</b>
+            {% endif %}
+            <span class="price">{{ variation.price|currency }}</span>
+        {% else %}
+            {% if has_available_variations %}
+            <span class="error-msg">
+            {% trans "The selected options are currently unavailable." %}
+            </span>
+            {% endif %}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% comment %}
+{% if settings.SHOP_USE_RATINGS %}
+<div class="panel panel-default rating">
+    <div class="panel-body">{% rating_for product %}</div>
+</div>
+{% endif %}
+{% endcomment %}
+
+{% errors_for add_product_form %}
+
+<form method="post" id="add-cart" class="shop-form">
+    {% fields_for add_product_form %}
+    <div class="form-actions" style="padding-left:0;">
+        <input type="submit" class="btn btn-lg pull-right" name="add_cart" value="{% trans "Buy" %}" style="float:left ! important;margin-right:15px;width:45%;min-width:110px;background-color:#fdd96c;">
+        <input type="button" class="btn btn-lg pull-right" id="add_to_cart" name="add_to_cart" value="加入购物车" style="float:left ! important;width:45%;min-width:110px;background-color:#ffc001;">
+        {% comment %}
+        {% if settings.SHOP_USE_WISHLIST %}
+        <input type="submit" class="btn btn-default btn-lg pull-left" name="add_wishlist" value="{% trans "Save for later" %}">
+        {% endif %}
+        {% endcomment %}
+    </div>
+</form>
+{% else %}
+<p class="error-msg">{% trans "This product is currently unavailable." %}</p>
+{% endif %}
+</div>
+</div>
+<div class="wniprodcont" style="width:100%;float:left;">
+{% editable product.content %}
+{{ product.content|richtext_filters|safe }}
+{% endeditable %}
+</div>
+
+
+{% if settings.SHOP_USE_RELATED_PRODUCTS and related_products %}
+<h2>{% trans "Related Products" %}</h2>
+<div class="row related-products">
+    {% for product in related_products %}
+    <div class="col-xs-6 col-sm-4 col-md-3 product-thumb">
+        <a class="thumbnail" href="{{ product.get_absolute_url }}">
+            {% if product.image %}
+            <img src="{{ MEDIA_URL }}{% thumbnail product.image 90 90 %}">
+            {% endif %}
+            <div class="caption">
+            <h6>{{ product }}</h6>
+            <div class="price-info">
+            {% if product.has_price %}
+                {% if product.on_sale %}
+                <span class="old-price">{{ product.unit_price|currency }}</span>
+                {% trans "On sale:" %}
+                {% endif %}
+                <span class="price">{{ product.price|currency }}</span>
+            {% else %}
+                <span class="coming-soon">{% trans "Coming soon" %}</span>
+            {% endif %}
+            </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<div id="wnidialog" title="添加成功！"><a href="javascript:$('#wnidialog').dialog('close');">再逛逛</a><p><a href="/shop/cart">去购物车结算</a></p></div>
+{% endblock %}
+

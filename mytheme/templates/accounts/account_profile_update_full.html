@@ -1,0 +1,33 @@
+{% extends "accounts/account_form.html" %}
+{% load i18n future %}
+{% block extra_js %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+	// Add refresh button after field (this can be done in the template as well)
+    $('img.captcha').after(
+            $('<a href="#void" class="captcha-refresh"> 换一张图</a>')
+            );
+
+    // Click-handler for the refresh-link
+    $('.captcha-refresh').click(function(){
+        var $form = $(this).parents('form');
+        var url = location.protocol + "//" + window.location.hostname + ":"
+                  + location.port + "/captcha/refresh/";
+
+        // Make the AJAX-call
+        $.getJSON(url, {}, function(json) {
+            $form.find('input[name="id_profile_captcha_0"]').val(json.key);
+            $form.find('img.captcha').attr('src', json.image_url);
+        });
+
+        return false;
+    });
+});
+</script>
+{% endblock %}
+{% block account_form_actions %}
+{{ block.super }}
+<a class="btn btn-default btn-lg pull-left" href="{% url "shop_order_history" %}">{% trans "View past orders" %}</a>
+<a class="btn btn-default btn-lg pull-left" href="{% url "my_discount" %}">我的优惠券</a>
+{% endblock %}

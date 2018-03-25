@@ -1,0 +1,79 @@
+from django.contrib import admin
+from mezzanine.core.admin import TabularDynamicInlineAdmin
+from mezzanine.pages.admin import PageAdmin
+from models import Slide,IconBlurb,HomePage,Portfolio
+
+# Register your models here.
+class SlideInline(TabularDynamicInlineAdmin):
+    model = Slide
+    
+class IconBlurbInline(TabularDynamicInlineAdmin):
+    model = IconBlurb
+        
+class HomePageAdmin(PageAdmin):
+    model = HomePage
+    inlines = (SlideInline,IconBlurbInline)
+
+class PortfolioAdmin(PageAdmin):
+    model = Portfolio
+admin.site.register(HomePage,HomePageAdmin)
+admin.site.register(Portfolio,PortfolioAdmin)
+#admin.site.register(PortfolioItem, PortfolioItemAdmin)
+#admin.site.register(PortfolioItemCategory)
+
+from copy import deepcopy
+from cartridge.shop.admin import ProductAdmin,OrderAdmin,DiscountCodeAdmin
+from cartridge.shop.models import Product,Order,DiscountCode
+
+blog_fieldsets = deepcopy(ProductAdmin.fieldsets)
+blog_fieldsets[0][1]["fields"].insert(-2, "saled")
+blog_fieldsets[0][1]["fields"].insert(-2, "recnum")
+
+order_fieldsets = deepcopy(OrderAdmin.fieldsets)
+order_fieldsets[0][1]["fields"].append("prefer_time")
+
+discount_fieldsets = deepcopy(DiscountCodeAdmin.fieldsets)
+tmp = list(discount_fieldsets[-2][1]["fields"])
+tmp.append("description")
+discount_fieldsets[-2][1]["fields"] = tuple(tmp)
+
+class MyProductAdmin(ProductAdmin):
+    fieldsets = blog_fieldsets
+
+class MyOrderAdmin(OrderAdmin):
+    fieldsets = order_fieldsets
+
+class MyDiscountAdmin(DiscountCodeAdmin):
+    fieldsets = discount_fieldsets
+    
+admin.site.unregister(Product)
+admin.site.register(Product, MyProductAdmin)
+
+admin.site.unregister(Order)
+admin.site.register(Order, MyOrderAdmin)
+
+admin.site.unregister(DiscountCode)
+admin.site.register(DiscountCode, MyDiscountAdmin)
+
+"""
+from models import UserProfile
+class UserProfileInline(admin.StackedInline):
+    fk_name = 'user'
+    model = UserProfile
+#    can_delete = False
+#    verbose_name_plural = 'profile'
+
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+#from mezzanine.accounts.admin import UserProfileAdmin
+#from mezzanine.core.admin import SitePermissionUserAdmin
+# Define a new User admin
+class UserAdmin(UserAdmin):
+    inlines = (UserProfileInline, )
+    #list_display += ("date_of_birth","gender")
+    #model = UserProfile
+    #pass
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+"""

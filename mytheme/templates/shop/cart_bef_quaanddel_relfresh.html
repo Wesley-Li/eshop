@@ -1,0 +1,219 @@
+{% extends "shop/base.html" %}
+{% load mezzanine_tags shop_tags i18n future staticfiles %}
+
+{% block meta_title %}{% trans "Your Cart" %}{% endblock %}
+{% block title %}{% trans "Your Cart" %}{% endblock %}
+{% block body_id %}cart{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<li>{% trans "Your Cart" %}</li>
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/jquery-ui-1.10.3.custom.css' %}" >
+{% endblock %}
+{% block extra_js %}
+<!-- script src="{% static "js/jquery-1.9.1.js" %}"></script-->
+<script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	function tmp(){
+		String.prototype.format = function () {
+		        var args = [].slice.call(arguments);
+		        return this.replace(/(\{\d+\})/g, function (a){
+		            return args[+(a.substr(1,a.length-2))||0];
+		        });
+		};
+		var init_dict = {};
+		init_dict['items-TOTAL_FORMS']=$("#id_items-TOTAL_FORMS").val();
+		init_dict['items-INITIAL_FORMS']=$("#id_items-INITIAL_FORMS").val();
+		init_dict['items-MAX_NUM_FORMS']=$("#id_items-MAX_NUM_FORMS").val();
+		init_dict['update_cart'] = "update";
+		
+		for(x=0;x<init_dict['items-TOTAL_FORMS'];x++)
+		{
+		  var id = 'items-{0}-id'.format(x);
+		  var quantity = 'items-{0}-quantity'.format(x);
+		  init_dict[id] = $("input[name={0}]".format(id)).val();
+		  init_dict[quantity] = $("input[name={0}]".format(quantity)).val();
+		};
+		return init_dict;
+		}
+	wni_dict = tmp();
+	$("input[name='update_cart']").css('display','none');
+	
+	$(":checkbox[name$='DELETE']").click(function(){
+		if (confirm("确定要删除该商品吗？")){
+		$(this).parents("tr").css("display","none");
+    var tmp_price = parseFloat($(this).parent().prev().text());
+    var old_total = parseFloat($(".total").children("span").text());
+    var final_total = old_total - tmp_price;
+    $(".total").children("span").text(String(final_total));
+    
+    wni_dict[$(this).attr('name')] = "on";
+		}
+		else{
+			$(this).prop("checked",false);
+		}
+ });
+	
+	$("input[name$=quantity]").on("change",function(){
+		//alert($(this).attr('name'));
+		var unit_price = parseFloat($(this).parent().prev().text());
+		var item_total = parseFloat($(this).parent().next().text());
+	    var old_total = parseFloat($(".total").children("span").text());
+	    var old_quantity = parseInt(wni_dict[$(this).attr('name')]);
+	    var current_quantity = parseInt($(this).val());
+	    
+	    var item_total_changed = (current_quantity - old_quantity) * unit_price;
+	    var final_item_total = item_total + item_total_changed;
+	    var final_total = old_total + item_total_changed;
+	    
+	    $(this).parent().next().text(final_item_total);
+	    $(".total").children("span").text(String(final_total));
+	    wni_dict[$(this).attr('name')]=current_quantity;
+ });
+  
+  function tmp_func(){window.location.href='/shop/checkout/'};
+  $("a[href='/shop/checkout/']").click(function(e){
+	  //e.preventDefault();
+	 //alert('shit');
+	 //$('input[name="update_cart"]').queue($(this).click());
+	 //$('input[name="update_cart"]').queue(function(){$(this).click();$(this).dequeue();alert('fuck');});
+	 $.ajax({
+       type:'post',
+       async:false,
+       url: '/shop/cart/',
+       data:wni_dict,//{'items-0-id':142,'items-1-id':148,'items-0-quantity':3,'update_cart':'update','items-TOTAL_FORMS':2,'items-INITIAL_FORMS':2,'items-MAX_NUM_FORMS':1000,'items-1-quantity':1,'items-1-DELETE':'on'},//{'items-0-quantity':4,'update_cart':'update','items-TOTAL_FORMS':1,'items-INITIAL_FORMS':1,'items-MAX_NUM_FORMS':1000,'items-0-id':142},
+       });
+	 //tmp_func();
+	 //window.location.href = '/shop/checkout/';
+	 //return false;
+  });
+  
+  $("#mydiscount").click(function(e){
+	   $.ajax({
+       type:'get',
+       async:false,
+       url: '/ajmydiscount/',
+       success: function(html, status) {$(html).dialog({
+           //autoOpen: false,
+           modal: true,
+           width: 550,
+           draggable: false,
+           //height:650,
+           title: '我的优惠券'
+           });},//alert(html);},
+       });
+  });
+  
+  $(".useclick").live('click',function(){
+		$('#id_discount_code').val($(this).parent().siblings().slice(1,2).text());
+		$('#cart_discount').dialog('destroy');
+	});
+  
+});
+</script>
+{% endblock %}
+{% block main %}
+{% if request.cart.has_items %}
+<form method="post" class="cart-form">
+{% csrf_token %}
+{% if cart_formset.errors %}
+{% for error in cart_formset.errors %}
+{% if error.values.0 %}{{ error.values.0 }}{% endif %}
+{% endfor %}
+{% endif %}
+{{ cart_formset.management_form }}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th colspan="2" class="left">{% trans "Item" %}</th>
+        <th>{% trans "Unit Price" %}</th>
+        <th class="center">{% trans "Qty" %}</th>
+        <th>{% trans "Price" %}</th>
+        <th class="center">{% trans "Remove?" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for form in cart_formset.forms %}
+    {% with form.instance as item %}
+    <tr>
+        <td width="30">
+            {{ form.id }}
+            {% if item.image %}
+            <a href="{{ item.get_absolute_url }}">
+                <img alt="{{ item.description }}" src="{{ MEDIA_URL }}{% thumbnail item.image 30 30 %}">
+            </a>
+            {% endif %}
+        </td>
+        <td class="left">
+            <a href="{{ item.get_absolute_url }}">{{ item.description }}</a>
+        </td>
+        <td>{{ item.unit_price|currency }}</td>
+        <td class="quantity">{{ form.quantity }}</td>
+        <td>{{ item.total_price|currency }}</td>
+        <td class="center">{{ form.DELETE }}</td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+    <tr>
+        <td colspan="5">{% order_totals %}</td>
+        <td>&nbsp;</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="form-actions">
+    <a href="{% url "shop_checkout" %}" class="btn btn-primary btn-lg pull-right">
+        {% if request.session.order.step %}{% trans "Return to Checkout" %}{% else %}{% trans "Go to Checkout" %}{% endif %}
+    </a>
+    <input type="submit" name="update_cart" class="btn btn-default btn-lg pull-left" value="{% trans "Update Cart" %}">
+</div>
+</form>
+
+{% if discount_form %}
+<form method="post" class="discount-form col-md-12 text-right">
+    {% fields_for discount_form %}
+    <input type="submit" class="btn btn-default" value="{% trans "Apply" %}">
+    <a id="mydiscount">查看我的优惠券</a>
+</form>
+{% endif %}
+
+{% if settings.SHOP_USE_UPSELL_PRODUCTS %}
+{% with request.cart.upsell_products as upsell_products %}
+{% if upsell_products %}
+<h2>{% trans "You may also like:" %}</h2>
+<div class="row">
+    {% for product in upsell_products %}
+    <div class="col-xs-6 col-sm-4 col-md-3 product-thumb">
+        <a class="thumbnail" href="{{ product.get_absolute_url }}">
+            {% if product.image %}
+            <img src="{{ MEDIA_URL }}{% thumbnail product.image 90 90 %}">
+            {% endif %}
+            <div class="caption">
+            <h6>{{ product }}</h6>
+            <div class="price-info">
+            {% if product.has_price %}
+                {% if product.on_sale %}
+                <span class="old-price">{{ product.unit_price|currency }}</span>
+                {% trans "On sale:" %}
+                {% endif %}
+                <span class="price">{{ product.price|currency }}</span>
+            {% else %}
+                <span class="coming-soon">{% trans "Coming soon" %}</span>
+            {% endif %}
+            </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+{% endif %}
+
+{% else %}
+<p>{% trans "Your Cart is empty." %}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% load mezzanine_tags shop_tags i18n future %}
+{% if orders %}
+<div id="cart_discount">
+<table class="table table-striped order-history">
+    <thead>
+        <th class="left">面值</th>
+        <th class="left">优惠券号</th>
+        <!-- th class="left">{% trans "有效期起" %}</th-->
+        <th class="left">{% trans "有效期至" %}</th>
+        <th class="left">剩余使用次数</th>
+        <th class="left">{% trans "使用说明" %}</th>
+        <th colspan="2" class="left">{% trans "操作" %}</th>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+    <tr>
+        <td class="left">{{ order.title }}</td>
+        <td class="left">{{ order.code }}</td>
+        <!-- td class="right">{{ order.valid_from }}</td-->
+        <td class="right">{{ order.valid_to }}</td>
+        <td class="right">{{ order.uses_remaining }}</td>
+        <td class="right">{{ order.description }}</td>
+        <td class="right"><input type="button" value="使用" class="useclick" /></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% pagination_for orders %}
+
+{% else %}
+<p>对不起, 您当前无有效的优惠券.<br/>如您想获取优惠券, 请关注我们的活动版块或者联系我们,谢谢!</p>
+{% endif %}
+</div>

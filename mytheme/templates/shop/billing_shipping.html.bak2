@@ -1,0 +1,167 @@
+{% extends "shop/checkout.html" %}
+{% load staticfiles i18n future mezzanine_tags %}
+
+{% block extra_head %}
+{{ block.super }}
+<script src="{% static "cartridge/js/shipping_fields.js" %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'js/datetimepicker/jquery.datetimepicker.css' %}"/>
+
+
+<link rel="stylesheet" href="{% static 'css/jquery-ui-1.10.3.custom.css' %}" >
+<!-- script src="{% static "js/jquery-1.8.3.js" %}"></script-->
+<script src="{% static "js/jquery-ui-1.10.3.custom.min.js" %}"></script>
+<script type="text/javascript" src="{% static 'js/datetimepicker/jquery.datetimepicker.js' %}"></script> 
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="{% static "js/billing_shipping.js" %}"></script>
+<script>
+$(document).ready(function(){
+	var logic = function( currentDateTime,$input ){
+		var curr = new Date().getDate();
+		var tmpd = new Date();
+		{% if request.cart.has_bcake %}
+		tmpd.setDate(tmpd.getDate()+1);
+		{% endif %}
+		if( currentDateTime.getDate()== curr ){
+			
+			{% if request.cart.has_bcake %}
+			//tmpd.setDate(tmpd.getDate()+1);
+			tmpd.setHours(10);
+			tmpd.setMinutes(0);
+			tmpd.setSeconds(0);
+			{% else %}
+			tmpd.setHours(tmpd.getHours() + 1);
+			{% endif %};
+			this.setOptions({
+				minDate:tmpd,
+				minTime:tmpd,
+				defaultDate:tmpd,
+			})
+			//alert(tmpd.getDate());
+		}else{
+			//{% if request.cart.has_bcake %}
+			//tmpd.setDate(tmpd.getDate()+1);
+			//{% endif %}
+			this.setOptions({
+				{% if request.cart.has_bcake %}
+				minTime:'10:00',
+				{% else %}
+				minTime:'00:00',
+				{% endif %}
+				minDate:tmpd,
+				//defaultDate:tmpd,
+			//startDate:	new Date(),
+			});
+			//alert(tmpd.getDate());
+		}
+		
+		//this.setOptions({minDate:tmpd,defaultDate:tmpd});	
+	};
+	$("label[for='id_prefer_time_1']").after("&nbsp;&nbsp;<input type='text' id='booktime' style='display:none;' />");
+	$("#id_prefer_time_0").click(function(){$("#booktime").css("display","none");});
+	var tmpt = new Date();
+	{% if request.cart.has_bcake %}
+	tmpt.setDate(tmpt.getDate()+1);
+	{% else %}
+	tmpt.setHours(tmpt.getHours() + 2);
+	{% endif %}
+	$("#booktime").val(tmpt.Format("yyyy-MM-dd hh:mm"));
+	$('#id_prefer_time_1').val('预约'+tmpt.Format("yyyy-MM-dd hh:mm"));
+	$('#id_prefer_time_1').click(function(){
+		var tmpt = new Date();
+		{% if request.cart.has_bcake %}
+		tmpt.setDate(tmpt.getDate()+1);
+		{% else %}
+		tmpt.setHours(tmpt.getHours() + 2);
+		{% endif %}
+		$("#booktime").css("display","").attr("readonly","readonly");
+		
+		$('#booktime').datetimepicker({
+			dayOfWeekStart : 1,
+			lang:'ch',
+			format : 'Y-m-d H:i',
+			//minDate : {% if request.cart.has_bcake %}tmpt{% else %}0{% endif %},
+			//minTime : {% if request.cart.has_bcake %}"10:00"{% else %}tmpt{% endif %},
+			roundTime:'ceil',
+			step:30,
+			onClose: function(current_time,$input){$("#id_prefer_time_1").val("预约"+$("#booktime").val())},
+			onSelectDate:logic,
+			onShow:logic,
+			//defaultDate:tmpt,
+			defaultTime:tmpt.getHours()+":00",
+		});
+	});
+	{% if request.cart.has_bcake %}
+	if($("#id_additional_instructions").val()==""){$("#id_additional_instructions").html("配件信息:&#13;\
+1.标配不锈钢刀叉，每套为1只环保纸托盘+1把不锈钢叉子,&#13;套数根据您订购的尺寸进行配置。&#13;\
+2.购买额外餐具(环保纸托盘配塑料叉，1元一套): 0&#13;\
+3.生日蜡烛（细蜡烛或数字蜡烛二选一，数字蜡烛请写明数字几: 细蜡烛&#13;\
+4.赠送巧克力牌(可写祝福语8字以内): 无");};
+	$("#id_prefer_time_0").parent().remove();
+	$("#id_prefer_time_1").click();
+	$("#id_prefer_time_1").parent().next().after("<br>'臻品蛋糕'提前一天预约。如需当日配送，请先下单后联系客服，以客服回复为准。微信及客服电话：13032557827");
+	{% endif %}
+});
+</script>
+
+{% endblock %}
+
+{% block fields %}
+{% if request.cart.has_items %}
+
+{% comment %}
+{% if not request.user.is_authenticated %}
+{% ifinstalled mezzanine.accounts %}
+<p>
+{% url "login" as login_url %}
+{% url "signup" as signup_url %}
+{% with request.path as next %}
+{% blocktrans %}
+If you have an existing account or would like to create one, please
+<a href="{{ login_url }}?next={{ next }}">log in</a> or
+<a href="{{ signup_url }}?next={{ next }}">sign up</a>.
+{% endblocktrans %}
+{% endwith %}
+</p>
+{% endifinstalled %}
+{% endif %}
+{% endcomment %}
+
+{% errors_for form %}
+
+<fieldset>
+    <legend>{% trans "Billing Details" %}</legend>
+    {% fields_for form.billing_detail_fields %}
+    {% fields_for form.additional_instructions_field %}
+</fieldset>
+<div style="display:none">
+<fieldset>
+    <legend>{% trans "Delivery Details" %}</legend>
+    {% fields_for form.same_billing_shipping_field %}
+    <div id="shipping_fields">{% fields_for form.shipping_detail_fields %}</div>
+    {% fields_for form.additional_instructions_field %}
+    {% fields_for form.remember_field %}
+</fieldset>
+</div>
+<!-- 
+<fieldset>
+    <legend>{% trans "Billing Details" %}</legend>
+    {% fields_for form.billing_detail_fields %}
+</fieldset>
+
+<fieldset>
+    <legend>{% trans "Delivery Details" %}</legend>
+    {% fields_for form.same_billing_shipping_field %}
+    <div id="shipping_fields">{% fields_for form.shipping_detail_fields %}</div>
+    {% fields_for form.additional_instructions_field %}
+    {% fields_for form.remember_field %}
+</fieldset>
+-->
+{% if not settings.SHOP_CHECKOUT_STEPS_SPLIT and settings.SHOP_PAYMENT_STEP_ENABLED %}
+{% include "shop/includes/payment_fields.html" %}
+{% endif %}
+
+{% fields_for form.other_fields %}
+{% include "shop/sms_check.html" %}
+{% endif %}
+{% endblock %}

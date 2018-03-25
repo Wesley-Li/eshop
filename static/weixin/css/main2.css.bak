@@ -1,0 +1,104 @@
+﻿.Cwrap { min-width: 320px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+.pure-g{*letter-spacing:normal;*word-spacing:-.43em;font-family:"黑体";text-rendering:optimizespeed;display:-webkit-flex;-webkit-flex-flow:row wrap;display:-ms-flexbox;-ms-flex-flow:row wrap}.opera-only :-o-prefocus,.pure-g{word-spacing:-.43em}.pure-u{display:inline-block;*display:inline;zoom:1;letter-spacing:normal;word-spacing:normal;vertical-align:top;text-rendering:auto}.pure-g [class *="pure-u"]{font-family:"黑体"}.pure-u-6-24,.p‘’ure-u-7-24,.pure-u-8-24{display:inline-block;*display:inline;zoom:1;letter-spacing:normal;word-spacing:normal;vertical-align:top;text-rendering:auto;margin-top:auto;margin-bottom:auto;}
+
+
+
+.pure-u-6-24{width:25%;*width:24.969%}.pure-u-7-24{background-color:white}.pure-u-8-24{width:100%;*width:100%;text-align:center;color:white;font-size:22px;}.pure-g-r{letter-spacing:-.31em;*letter-spacing:normal;*word-spacing:-.43em;font-family:FreeSans,Arimo,"Droid Sans",Helvetica,Arial,sans-serif;display:-webkit-flex;-webkit-flex-flow:row wrap;display:-ms-flexbox;-ms-flex-flow:row wrap}.opera-only :-o-prefocus,.pure-g-r{word-spacing:-.43em}.pure-g-r [class *="pure-u"]{font-family:"黑体"}.pure-g-r img{max-width:100%;height:auto}@media (min-width:980px){.pure-visible-phone{display:none}.pure-visible-tablet{display:none}.pure-hidden-desktop{display:none}}@media (max-width:480px){.pure-g-r>.pure-u,.pure-g-r>[class *="pure-u-"]{width:100%}}@media (max-width:767px){.pure-g-r>.pure-u,.pure-g-r>[class *="pure-u-"]{width:100%}.pure-hidden-phone{display:none}.pure-visible-desktop{display:none}}@media (min-width:768px) and (max-width:979px){.pure-hidden-tablet{display:none}.pure-visible-desktop{display:none}}
+.Lmr5 { margin-right: 5px; }	
+
+.wni-7-24-left{width:47%;margin-left:2%;float:left;}
+.wni-7-24-right{width:47%;margin-right:2%;margin-left:2%;}
+
+.innertext {margin-top:25px;font-size:1.1rem;}
+.wnitop {height:40px;margin-bottom:5px;background-color:#fdcf43;text-align:center;}
+.IN_colorful .quicklink .qinzi, .IN_colorful .quicklink .sichu, .IN_colorful .quicklink .jisu, .IN_colorful .quicklink .shiling, .IN_colorful .quicklink .paidui,.IN_colorful .quicklink .diy,.IN_colorful .quicklink .bailing,.IN_colorful .quicklink .dachu { width: 44px; height: 44px; display: inline-block;  background-repeat: no-repeat; background-size: 44px 44px; }
+.IN_colorful .quicklink .item .icon { margin-top: 10px; } 
+.IN_colorful .quicklink .qinzi {background-image: url(../img/qinzi.png);}
+.IN_colorful .quicklink .sichu {background-image: url(../img/sichu.png);}
+.IN_colorful .quicklink .jisu {background-image: url(../img/jisu.png);}
+.IN_colorful .quicklink .shiling {background-image: url(../img/shiling.png);}
+.IN_colorful .quicklink .paidui {background-image: url(../img/paidui.png);}
+.IN_colorful .quicklink .diy {background-image: url(../img/diy.png);}
+.IN_colorful .quicklink .bailing {background-image: url(../img/bailing.png);}
+.IN_colorful .quicklink .dachu {background-image: url(../img/dachu.png);}
+
+body, div, span, small, p, em, i, b, th, td, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, textarea { padding: 0; margin: 0; }
+body, div, span, small, p, em, i, b, th, td, dl, dt, dd, ul, ol, li, a, h1, h2, h3, h4, h5, h6, form, textarea { -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1); -moz-tap-highlight-color: rgba(0, 0, 0, 0.1); -ms-tap-highlight-color: rgba(0, 0, 0, 0.1); tap-highlight-color: rgba(0, 0, 0, 0.1); }
+
+.Lposr { position: relative; }
+
+.IN_colorful .hzicon { width: 24px; height: 24px; line-height: 1.5rem; display: inline-block; vertical-align: -4px; background-image: url(../img/bg_index_icon.png?t=0506); background-repeat: no-repeat; background-size: 35px auto; background-position: 0 -150px; }
+.IN_colorful .topblock { padding-left: 3.125%; padding-right: 3.125%; height: 80px; padding-top: 12px; padding-bottom: 8px; line-height: 1.5rem; color: rgba(255, 255, 255, 0.5); font-size: 0.75rem; background-image: url(../img/bg_topcolor.png?t=0506); background-size: cover; }
+.IN_colorful .topblock .link a { color: rgba(255, 255, 255, 0.5); }
+.IN_colorful .topblock .ctxt { color: #FFF; font-size: 1.25rem; line-height: 1.5rem; text-align: center; }
+.IN_colorful .topblock .user_middle, .IN_colorful .topblock .solid_local, .IN_colorful .topblock .flag_middle { color: rgba(255, 255, 255, 0.5); }
+.IN_colorful .topblock .hover { color: rgba(0, 0, 0, 0.3); }
+.IN_colorful .topblock .hover .user_middle, .IN_colorful .topblock .hover .solid_local, .IN_colorful .topblock .hover .flag_middle { color: rgba(0, 0, 0, 0.3); }
+.IN_colorful .topblock .hover a { color: rgba(0, 0, 0, 0.3); }
+
+.IN_colorful .topblock .Cicon { vertical-align: -7px; }
+
+  	
+.IN_colorful .quicklink { text-align: center; }
+.IN_colorful .quicklink .inner { margin-top: 10px; }
+.IN_colorful .quicklink .ptop { clear:both; }
+.IN_colorful .quicklink .item { width: 60%; height: 70px;width:70px; color: #666; display: block; font-size: 0.875rem; margin-left: 5%; background-color: #FFF;}
+.IN_colorful .quicklink .item .icon { margin-left: 30%; }
+//.IN_colorful .quicklink .item span { display: block; margin-top: -2px; }
+@media screen and (min-width: 360px) { .IN_colorful .quicklink .item { width: 60%; height: 82px; width:82px;}
+  //.IN_colorful .quicklink .item span { margin-top: 4px; }
+  .IN_colorful .quicklink .item .icon { margin-top: 14px; } 
+.innertext {margin-top:30px;font-size:1.2rem;}
+.IN_colorful .quicklink .qinzi, .IN_colorful .quicklink .sichu, .IN_colorful .quicklink .jisu, .IN_colorful .quicklink .shiling, .IN_colorful .quicklink .paidui,.IN_colorful .quicklink .diy,.IN_colorful .quicklink .bailing,.IN_colorful .quicklink .dachu { width: 54px; height: 54px; background-size: 54px 54px; }
+}
+@media screen and (min-width: 414px) { .IN_colorful .quicklink .item { width: 60%; height: 94px;width:94px; }
+  //.IN_colorful .quicklink .item span { margin-top: 8px; }
+  .IN_colorful .quicklink .item .icon { margin-top: 20px; } 
+.innertext {margin-top:35px;font-size:1.4rem;}
+.IN_colorful .quicklink .qinzi, .IN_colorful .quicklink .sichu, .IN_colorful .quicklink .jisu, .IN_colorful .quicklink .shiling, .IN_colorful .quicklink .paidui,.IN_colorful .quicklink .diy,.IN_colorful .quicklink .bailing,.IN_colorful .quicklink .dachu { width: 64px; height: 64px; background-size: 64px 64px; }
+}
+.IN_colorful .quicklink .item.hover { background-color: #CCC; -webkit-box-shadow: 0 0 1px 5px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0 0 1px 5px rgba(0, 0, 0, 0.1); -ms-box-shadow: 0 0 1px 5px rgba(0, 0, 0, 0.1); box-shadow: 0 0 1px 5px rgba(0, 0, 0, 0.1); }
+.IN_colorful .quicklink .query { color: #FFF; width: 108px; height: 108px; line-height: 1.25rem; position: absolute; top: 0; left: 50%; margin-left: -54px; display: inline-block; background-image: url(../img/bg_orderbtn.png?t=0506); background-size: 108px auto; background-repeat: no-repeat; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.05); -moz-box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.05); -ms-box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.05); box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.05); }
+.IN_colorful .quicklink .query .txt { position: absolute; width: 100%; top: 34px; height: 40px; text-align: center; }
+@media screen and (min-width: 360px) { .IN_colorful .quicklink .query { width: 120px; height: 120px; margin-left: -60px; background-size: 120px auto; }
+  .IN_colorful .quicklink .query .txt { top: 40px; } }
+@media screen and (min-width: 414px) { .IN_colorful .quicklink .query { width: 132px; height: 132px; margin-left: -66px; background-size: 132px auto; }
+  .IN_colorful .quicklink .query .txt { top: 46px; } }
+.IN_colorful .quicklink .query.hover { color: rgba(255, 255, 255, 0.5); -webkit-box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.1); -ms-box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.1); box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.1); }
+
+.IN_colorful .quicklink .time { background-position: 0 0px; }
+.IN_colorful .quicklink .order { background-position: 0 -30px; }
+.IN_colorful .quicklink .ticket { background-position: 0 -60px; }
+.IN_colorful .quicklink .sale { background-position: 0 -90px; }
+.IN_colorful .quicklink .bed { background-position: 0 -120px; }
+.IN_colorful .brand { background-color: #FFF; font-size: 0.875rem; color: #666; text-align: center; line-height: 1.25rem; padding-top: 8px; padding-bottom: 8px; border-top: 1px solid #ebdfd8; }
+.IN_colorful .brand .brand_shouye, .IN_colorful .brand .brand_fenlei, .IN_colorful .brand .brand_dingdan, .IN_colorful .brand .brand_wode{ width: 28px; height: 28px; vertical-align: -4px; display: inline-block; background-size:28px 28px;margin-bottom:4px;}
+.IN_colorful .brand .brand_shouye { background-image: url(../img/shouye.png); }
+.IN_colorful .brand .brand_fenlei { background-image: url(../img/fenlei.png); }
+.IN_colorful .brand .brand_dingdan { background-image: url(../img/dingdan.png); }
+.IN_colorful .brand .brand_wode { background-image: url(../img/wode.png); }
+/*
+.IN_colorful .brand .brand_hanting { background-position: 0 -275px; }
+.IN_colorful .brand .brand_yilai { background-position: 0 -300px; }
+.IN_colorful .brand .brand_haiyou { background-position: 0 -325px; }
+.IN_colorful .brand .brand_ibis { background-position: 0 -350px; }
+*/
+@media screen and (min-width: 360px) { .IN_colorful .brand { padding-top: 16px; padding-bottom: 16px; } }
+@media screen and (min-width: 414px) { .IN_colorful .brand { padding-top: 20px; padding-bottom: 20px; } }
+/*
+.IN_colorful .foot { text-align: center; font-size: 0.875rem; line-height: 1.25rem; padding-top: 8px; padding-bottom: 8px; }
+.IN_colorful .foot a { color: #808080; }
+.IN_colorful .foot a.high { color: #7c3567; }
+.IN_colorful .foot .copyright { color: #CCC; font-size: 0.75rem; }
+@media screen and (min-width: 360px) { .IN_colorful .foot { padding-top: 16px; padding-bottom: 16px; }
+  .IN_colorful .foot .copyright { line-height: 1.875rem; } }
+*/  	
+.Lpt20 { padding-top: 10px; }
+.Lmt20 { margin-top: 10px; }
+body {
+  background-color: #F6F6F6;
+  /*font-family: '冬青黑体W3';*/
+  font-size: 16px; }
+a { cursor: pointer; text-decoration: none; }
+a img { border: none; }

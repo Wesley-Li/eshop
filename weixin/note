@@ -1,0 +1,23 @@
+curl --data '{"Content":"content","MsgType":"msgtype","FromUserName":"fromusername","ToUserName":"tousername"}' -X POST  http://happydiaosi.com/weixin
+
+content,msgType,fromUser,toUser
+
+curl -d '{"Content":"content","MsgType":"msgtype","FromUserName":"fromusername","ToUserName":"tousername"}' -H "Accept: application/json" -X POST http://10.0.3.50:8000/weixin/
+
+
+curl -d 'Content=content&MsgType=msgtype&FromUserName=fromusername&ToUserName=tousername' -X POST http://10.0.3.50:8000/weixin/
+
+curl -l -H "Content-type: application/json" -X POST -d '{"Content":"content","MsgType":"msgtype","FromUserName":"fromusername","ToUserName":"tousername"}' http://10.0.3.50:8000/weixin/
+
+echo '<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[this is a test]]></Content><MsgId>1234567890123456</MsgId></xml>'|curl -X POST -H 'Content-type:text/xml' -d @- http://10.0.3.50:8000/weixin/
+
+echo '<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[this is a test]]></Content><MsgId>1234567890123456</MsgId></xml>'|curl -X POST -H 'Content-type:text/xml' -d @- http://happydiaosi.com/weixin/
+
+
+
+
+weino: gh_f140d70f60f8
+appID
+wx80556eb5c15c59ed
+appsecret
+9749c4ae721399c635b0e6c470bf2f49

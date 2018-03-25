@@ -1,0 +1,27 @@
+from django import template
+register = template.Library()
+
+from cartridge.shop.models import Product,Category
+from mezzanine.pages.models import Page
+
+@register.inclusion_tag("recgoods.html", takes_context=True)
+def rec_goods(context):
+    """
+    HTML version of order_totals.
+    """
+    targetid=Page.objects.get(slug="shop/recgoods").id
+    rec_list = Product.objects.filter(categories__id=targetid).order_by("-recnum","-id")[:8]#.values('title')
+    #print rec_list
+    context['rec_goods']=rec_list
+    return context
+
+@register.inclusion_tag("crowgoods.html", takes_context=True)
+def crow_goods(context):
+    """
+    HTML version of order_totals.
+    """
+    targetid=Page.objects.get(slug="shop/crowgoods").id
+    rec_list = Product.objects.filter(categories__id=targetid).order_by("-recnum","-id")[:4]#.values('title')
+    #print rec_list
+    context['rec_goods']=rec_list
+    return context

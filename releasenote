@@ -1,0 +1,72 @@
+#############################################################################
+version : 4.0
+New features:
+1. 添加csrf攻击防御
+2. 
+
+Css Style:
+
+
+Bug fix:
+1. 购物车删除后仍然存在
+2. 购物车里改数量查库存
+3. PDF中文乱码
+
+Following:
+1. Add two big cakes
+2. waiting Eason to add products
+3. Then, dump product database to local dev server !! important
+##############################################################################
+version : 5.0
+New features:
+1. add hot/freeze after data sync from production( not done yet)(done)
+2. add product zoom(delay)
+3. 页面详情样式(饮料未做)
+4. 活动详情 (done)
+5. 购物车空白去掉 (done)
+6. 2件优惠(delay)
+7. TAB页名称
+8. 29免运费(done)
+
+Css Style:
+
+
+Bug fix:
+1. English characters in search results
+2. homepage remove pic above partners
+
+
+Following:
+1. eason adjust footer/price/saled
+###########################################################################
+version : 6.0
+New features:
+1. refine according eason's suggestion(most done, still some waiting)
+
+Css Style:
+
+
+Bug fix:
+1. 
+
+
+Following:
+1. push to prod, eason to verify thosed fixed and edit products info
+#############################################################################
+
+###########################################################################
+version : 7.0
+New features:
+1. 
+
+Css Style:
+
+
+Bug fix:
+1. fix remaining bugs from Eason(all done)
+
+
+Following:
+1. for testing and eason to edit
+#############################################################################
+

@@ -1,0 +1,24 @@
+{% extends "pages/page.html" %}
+{% load static mezzanine_tags i18n pages_tags %}
+
+
+{% block main %} 
+{% if page.homepage.slides.all %}
+<!--slider-->
+<div id="main_slider">
+    <div class="camera_wrap" id="camera_wrap_1">
+        {% for slide in page.homepage.slides.all %}
+        <div data-src="{{ MEDIA_URL }}{% thumbnail slide.image 1920 690 %}"></div>
+        {% endfor %}                                       
+    </div><!-- #camera_wrap_1 -->
+    <div class="clear"></div>   
+</div>        
+<!--//slider-->
+{% endif %}
+
+{% editable page.homepage.heading page.homepage.subheading %}
+{{ page.homepage.heading }}
+<span>{{ page.homepage.subheading }}</span>
+{% endeditable %}
+{{ page.homepage.content|richtext_filters|safe }}
+{% endblock %}

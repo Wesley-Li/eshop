@@ -1,0 +1,142 @@
+{% extends "pages/page.html" %}
+{% load static mezzanine_tags i18n pages_tags block_tags %}
+{% load mytheme %}
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/wni.css" %}" >
+{% endblock %}
+<div id="top"></div>
+{% block main %} 
+
+<div class="row">
+            <div class="box">
+                <div class="col-lg-12 text-center">
+                    <div id="carousel-example-generic" class="carousel slide" style="width:100%;min-width:1000px;">
+                        <!-- Indicators -->
+                        
+                        <ol class="carousel-indicators hidden-xs">
+                        {% for slide in page.homepage.slides.all %}
+                        <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}"></li>
+                            {% comment %}
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            {% endcomment %}
+                        {% endfor %}
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="width:100%;height:425px;min-width:1000px;">
+                            
+                            {% for slide in page.homepage.slides.all %}
+                            <div class="item {% if forloop.first %}active{% endif %}" style="height:100%;">
+                                <a href="{% ifequal forloop.counter 3 %}/nicecake{% endifequal %}{% ifequal forloop.counter 1 %}/opencere{% endifequal %}"><img class="img-responsive img-full" src="{{MEDIA_URL }}{{ slide.image }}"  alt="" style="width:100%;height:100%;display:block;" ></a>
+                                <!-- img class="img-responsive img-full" src="{{ MEDIA_URL }}{% thumbnail slide.image 1920 690 %}"  alt=""-->
+                            </div>
+                            {% endfor %}
+                            {% comment %}
+                            <div class="item active">
+                                <img class="img-responsive img-full" src={% static "img/slide-1.jpg" %} alt="">
+                            </div>
+                            <div class="item">
+                                <img class="img-responsive img-full" src={% static "img/slide-2.jpg" %} alt="">
+                            </div>
+                            <div class="item">
+                                <img class="img-responsive img-full" src={% static "img/slide-3.jpg" %} alt="">
+                            </div>
+                            {% endcomment %}
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev" style="background-image:none;">
+                            <span class="icon-prev"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next" style="background-image:none;">
+                            <span class="icon-next"></span>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+</div>
+
+{% comment %}
+{% if page.homepage.slides.all %}
+<!--slider-->
+<div id="main_slider">
+    <div class="camera_wrap" id="camera_wrap_1">
+        {% for slide in page.homepage.slides.all %}
+        <div data-src="{{ MEDIA_URL }}{% thumbnail slide.image 1920 690 %}"></div>
+        {% endfor %}                                       
+    </div><!-- #camera_wrap_1 -->
+    <div class="clear"></div>   
+</div>        
+<!--//slider-->
+{% endif %}
+{% endcomment %}
+{% comment %}
+{% endcomment %}
+<div style="clear:both"></div>
+<br/>
+{% comment %}
+<img class="img-responsive img-full" src={% static "img/tese1400_4.png" %} alt="" style="width:100%;min-width:1000px;padding:50px 0px 30px 0px;">
+{% endcomment %}
+{% comment %}
+{% editable page.homepage.heading page.homepage.subheading %}
+{{ page.homepage.heading }}
+<span>{{ page.homepage.subheading }}</span>
+{% endeditable %}
+{% endcomment %}
+{% comment %}
+{% crow_goods %}
+{% rec_goods %}
+{% endcomment %}
+<div><!-- recommanded goods -->
+
+</div>
+{% comment %}
+<div><!-- Recent Posts -->
+{% load blog_tags keyword_tags i18n %}
+{% blog_recent_posts 1 as recent_posts %}
+{% if recent_posts %}
+
+<!-- h2>{% trans "Recent Posts" %}</h2-->
+<!-- h2 style="font-weight:bold;">{% trans "最新活动" %}</h>
+<a href="/blog" style="float:right;font-size:20px;color:#333333;">{% trans "更多  >>>" %}</a-->
+<hr style="width:100%;" />
+{% for recent_post in recent_posts %}
+<div style="overflow:auto;">
+<!-- a href="{{ recent_post.get_absolute_url }}" style="font-size:20px;color:#333333;"
+    >{{ recent_post.title }}</a-->
+
+    <!-- h4>{{ recent_post.publish_date|timesince }} {% trans "之前" %}</h4 -->
+<div class="recent-summary" style="width:100%;min-width:1000px;">
+<!-- wni comment here origin -->
+{% if settings.BLOG_USE_FEATURED_IMAGE and recent_post.featured_image %}
+{% block blog_post_list_post_featured_image %}
+<a href="{{ recent_post.get_absolute_url }}">
+    <img class="img-thumbnail pull-left" src="{{ MEDIA_URL }}{% thumbnail recent_post.featured_image 90 90 %}">
+</a>
+{% endblock %}
+{% endif %}
+<!-- wni endcomment here origin -->
+{{ recent_post.description_from_content|safe }}
+
+</div><!-- /recent-summary -->
+
+</div>
+<hr style="margin:0;"/>
+{% endfor %}
+{% endif %}
+</div><!-- /Recent Posts -->
+{% endcomment %}
+{% comment %}
+<img class="img-responsive img-full" src={% static "img/partners_2.png" %} alt="" style="width:100%;min-width:1000px;padding:50px 0px 30px 0px;" />
+{% endcomment %}
+{% include 'scenario.html' %}
+{% include 'tese.html' %}
+{% include 'partner.html' %}
+{% include 'biscan.html' %}
+{% endblock %}

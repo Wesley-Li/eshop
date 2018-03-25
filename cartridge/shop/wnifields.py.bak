@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+#coding: utf-8
+
+from django.forms import ChoiceField
+from django.utils.encoding import smart_text, force_text
+from django.core.exceptions import ValidationError
+
+class WniChoiceField(ChoiceField):
+    
+    def validate(self, value):
+        """
+        Validates that the input is in self.choices.
+        """
+        super(ChoiceField, self).validate(value)
+        if value and not self.valid_value(value):
+            raise ValidationError(self.error_messages['invalid_choice'] % {'value': value})
+
+    def valid_value(self, value):
+        "Check to see if the provided value is a valid choice"
+        for k, v in self.choices:
+            if isinstance(v, (list, tuple)):
+                # This is an optgroup, so look inside the group for options
+                for k2, v2 in v:
+                    if value == smart_text(k2):
+                        return True
+            else:
+                if value == smart_text(k):
+                    return True
+        if value.startswith(u"预约"):
+            return True
+        return False

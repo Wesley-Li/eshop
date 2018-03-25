@@ -1,0 +1,69 @@
+wni.flatblock
+{
+	width:39%;
+	float: left;
+	height: auto;
+	//height: 300px;
+	//display:block;
+	overflow: auto;
+	//margin-left:10%;
+	//border:1px solid #F00;
+}
+
+.twocolumns
+{
+	width:39%;
+	float: left;
+	height: auto;
+	//height: 300px;
+	//display:block;
+	overflow: auto;
+	//margin-left:10%;
+	//border:1px solid #F00;
+}
+
+ .block-left
+{
+	margin-top : 25px;
+	margin-left:10%;
+	//border:1px solid #F00;
+}
+ .block-right
+{
+	margin-top: 25px;
+	margin-left: 2%;
+	margin-right:10%;
+	//border:1px solid #F00;
+}
+
+.flatblock img
+{
+	width:100%;
+	//height: auto;
+	max-height:90%;
+}
+
+.indentdiv
+{
+	margin-left:10%;
+	margin-right:10%;
+	//height: auto;
+}
+
+.threecolumns
+{
+	width:31%;
+	float: left;
+	//height: auto;
+	//height: 300px;
+	//display:block;
+	overflow: auto;
+	margin-left:2%;
+	//border:1px solid #F00;
+}
+
+
+.editable-original .content
+{
+	padding-top:10px;
+}

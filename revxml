@@ -1,0 +1,1 @@
+echo u'this is a test' u'text' u'fromUser' u'toUser' > /tmp/revxml.txt

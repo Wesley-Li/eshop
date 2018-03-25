@@ -1,0 +1,174 @@
+{% load static %}
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <title>微信安全支付</title>
+    <script type="text/javascript" src='{% static "js/jquery-1.8.3.js" %}'></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+  /*
+   * 注意：
+   * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+   * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+   * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+   *
+   * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+   * 邮箱地址：weixin-open@qq.com
+   * 邮件主题：【微信JS-SDK反馈】具体问题
+   * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+   */
+ 
+</script>
+<script type="text/javascript">
+    /*
+    $(document).ready(function() {
+    	 wx.config({
+    	      debug: false,
+    	      appId: '{{ appId }}',
+    	      timestamp: {{ timestamp }},
+    	      nonceStr: '{{ nonceStr }}',
+    	      signature: '{{ signature }}',
+    	      jsApiList: [
+    	        'checkJsApi',
+    	        'onMenuShareTimeline',
+    	        'onMenuShareAppMessage',
+    	        'onMenuShareQQ',
+    	        'onMenuShareWeibo',
+    	        'hideMenuItems',
+    	        'showMenuItems',
+    	        'hideAllNonBaseMenuItem',
+    	        'showAllNonBaseMenuItem',
+    	        'translateVoice',
+    	        'startRecord',
+    	        'stopRecord',
+    	        'onRecordEnd',
+    	        'playVoice',
+    	        'pauseVoice',
+    	        'stopVoice',
+    	        'uploadVoice',
+    	        'downloadVoice',
+    	        'chooseImage',
+    	        'previewImage',
+    	        'uploadImage',
+    	        'downloadImage',
+    	        'getNetworkType',
+    	        'openLocation',
+    	        'getLocation',
+    	        'hideOptionMenu',
+    	        'showOptionMenu',
+    	        'closeWindow',
+    	        'scanQRCode',
+    	        'chooseWXPay',
+    	        'openProductSpecificView',
+    	        'addCard',
+    	        'chooseCard',
+    	        'openCard'
+    	      ]
+    	  });    	
+    //调用微信JS api 支付
+    wx.ready(function () {
+    document.querySelector('#wni').onclick = function () {
+    
+    wx.chooseWXPay({
+      timestamp: "1431008927", 
+      nonceStr: 'v76k0mf9pv6tg6agw7dayn1kxd1a0m6u',
+      package: 'prepay_id=wx20150507222846a7a76a17850242786652',
+      signType: 'MD5', 
+      paySign: '9445D7F39DEC567226C65DC572FA5579',
+      appId: "wx8a02dd707a04b997", 
+      success: function (res) {
+	        alert(res);},
+	    error: function(res){alert(res);}
+    });
+    alert('finished!');
+  };})
+    /* 
+        $("#wni").click(
+        function()
+        {
+        	wx.chooseWXPay({
+        		package: "prepay_id=wx20150507222846a7a76a17850242786652", 
+        		timeStamp: "1431008927", 
+        		signType: "MD5", 
+        		paySign: "9445D7F39DEC567226C65DC572FA5579", 
+        		appId: "wx8a02dd707a04b997", 
+        		nonceStr: "v76k0mf9pv6tg6agw7dayn1kxd1a0m6u",
+        	    success: function (res) {
+        	        alert(res);},
+        	    error: function(res){alert(res);}
+        	});
+        	alert('fishied');
+        })
+       
+    });  */
+    </script>
+</head>
+<body>
+<script type="text/javascript">
+    	 wx.config({
+    	      debug: false,
+    	      appId: '{{ appId }}',
+    	      timestamp: {{ timestamp }},
+    	      nonceStr: '{{ nonceStr }}',
+    	      signature: '{{ signature }}',
+    	      jsApiList: [
+    	        'checkJsApi',
+    	        'onMenuShareTimeline',
+    	        'onMenuShareAppMessage',
+    	        'onMenuShareQQ',
+    	        'onMenuShareWeibo',
+    	        'hideMenuItems',
+    	        'showMenuItems',
+    	        'hideAllNonBaseMenuItem',
+    	        'showAllNonBaseMenuItem',
+    	        'translateVoice',
+    	        'startRecord',
+    	        'stopRecord',
+    	        'onRecordEnd',
+    	        'playVoice',
+    	        'pauseVoice',
+    	        'stopVoice',
+    	        'uploadVoice',
+    	        'downloadVoice',
+    	        'chooseImage',
+    	        'previewImage',
+    	        'uploadImage',
+    	        'downloadImage',
+    	        'getNetworkType',
+    	        'openLocation',
+    	        'getLocation',
+    	        'hideOptionMenu',
+    	        'showOptionMenu',
+    	        'closeWindow',
+    	        'scanQRCode',
+    	        'chooseWXPay',
+    	        'openProductSpecificView',
+    	        'addCard',
+    	        'chooseCard',
+    	        'openCard'
+    	      ]
+    	  });    	
+    //调用微信JS api 支付
+    wx.ready(function () {
+    document.querySelector('#wni').onclick = function () {
+    
+    wx.chooseWXPay({
+      timestamp: "1431073437", 
+      nonceStr: 'hfocbumk0zbz9xegcw4z9pjm8b93pu5d',
+      package: 'prepay_id=wx2015050816235600155ced940574637303',
+      signType: 'MD5', 
+      paySign: 'C729E71FE30B2DD3FE68916A22B9DBF0',
+      appId: "wx8a02dd707a04b997", 
+      success: function (res) {
+	        alert(res);},
+	    error: function(res){alert(res);}
+    });
+    alert('finished!');
+  };})
+    </script>
+    </br></br></br></br>
+    <div align="center">
+        <button id="wni" style="width:210px; height:30px; background-color:#FE6714; border:0px #FE6714 solid; cursor: pointer;  color:white;  font-size:16px;" type="button" >贡献一下</button>
+    </div>
+</body>
+</html>

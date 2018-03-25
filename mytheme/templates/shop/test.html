@@ -1,0 +1,93 @@
+{% load staticfiles %}
+<head>
+
+<link rel="stylesheet" href="{% static "css/jquery-ui-1.10.3.custom.css" %}">
+<script src="{% static "js/jquery-1.9.1.js" %}"></script>
+<script src="{% static "js/jquery-ui-1.10.3.custom.min.js" %}"></script>
+<script>
+$(document).ready(function() {
+      
+    $("#auth_first_check").dialog({
+        autoOpen:false,
+        modal:true,
+        draggable:false,
+    });
+    
+    function resendaj(){
+    	if ($("#resend").attr("disabled")=="disabled"){return};
+    	alert("shit");
+    	resendac();
+    	//return true;
+    }
+    
+    function resendac(){
+    	$("#errpane").text("");
+    	timerMax=10;
+    	//if ($("#resend").css("background")=="#999"){return};
+    	$("#resend").css("background","#999").attr("disabled",true).click(function(event){return false;});
+    	
+    	//$("#countdonw").css('display','block');
+    	var timer = window.setInterval(function() {
+            $("#countdown").text("("+timerMax+"s)");
+            if (timerMax-- <= 0) {
+              window.clearInterval(timer); 
+              //$("#countdonw").css('display','none');
+              $("#countdown").text("");
+              $("#resend").css("background","#42abff").attr("disabled",false);
+              $("#resend").click(function(){resendaj();});
+            }
+          }, 1000);
+    };
+    
+    $("#check_auth").click(function(){
+    	$("#errpane").text("");
+    	$.ajax({
+    		type:'post',
+    		url: '/pushsms/',
+    		async: false,
+    		data:{"cn":$("#auth_tel").text(),"ca":$("#vcode_input").val(),"tp":1},
+    		success:function(msg){
+    		if(msg == 999){
+    		$("#auth_first_check").dialog("close");
+    		}else{
+    		$("#errpane").text("验证码错误,请重新获取!");
+    		}
+    		},
+    		error:function(){
+    		alert("网络异常!");
+    		}
+    		});
+
+    });
+    
+    $("#checksubmit").click(function(){	
+    	$("#auth_first_check").dialog("open");
+    	resendac();
+
+    });
+});
+</script>
+</head>
+
+<div id="auth_first_check" class="bs-modal-dialog checkout-auth-modal">
+    <div class="bs-modal-content">
+      <div class="bs-modal-header with-underline">
+        <h4 class="bs-modal-title">用户手机验证</h4>
+      </div>
+      <div class="bs-modal-body">
+        <p class="ui-alert warning" style="margin-top:-20px"><i class="icon-warning"></i>您的手机首次在此电脑下单，请先验证手机号码。</p>
+        <h5 class="checkout-auth-title checkout_auth_title">验证码已发送至<span id="auth_tel">13270806549</span></h5>
+        <h5><span id="errpane" style="color:red;"></span></h5>
+        <div class="group">
+          <div class="checkout-auth-fillform">
+            <input id="vcode_input" type="text" maxlength="6" placeholder="请输入短信验证码" style="width:100px;">
+            <a id="resend" class="checkout-auth-btn btn-send vcode_send" role="button" style="border:1px solid;">重新发送<span id="countdown"></span></a>
+            <!-- input type="button" id="resend">重新发送<span id="countdown"></span></input-->
+          </div>
+          <a id="check_auth" class="ui-btn btn-submit checkout-auth-btn vcode_confirm" role="button" style="background:#fff28e;border:1px solid;">提交验证</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<a id="checksubmit">click here!</a>

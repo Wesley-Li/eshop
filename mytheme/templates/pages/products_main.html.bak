@@ -1,0 +1,39 @@
+{% load mezzanine_tags shop_tags i18n endless %}
+<div class="row product-list endless_page_template">
+{% with products.object_list as entries %}
+{% paginate entries %}
+{% for product in entries %}
+    <div class="col-xs-6 col-sm-4 col-lg-3 product-thumb">
+    <div class="placeholder" style="height:15px;background-color:#fdcf43;"></div>
+    <a href="{{ product.get_absolute_url }}" class="thumbnail">
+        {% if product.image %}
+        <img src="{{ MEDIA_URL }}{% thumbnail product.image 148 148 %}">
+        {% else %}
+        <div class="placeholder"></div>
+        {% endif %}
+        <div class="caption">
+        <h6>{{ product }}</h6>
+        <div class="price-info">
+        {% if product.has_price %}
+            {% if product.on_sale %}
+            <span class="old-price">{{ product.unit_price|currency }}</span>
+            {% trans "On sale:" %}
+            {% endif %}
+            <span class="price">{{ product.price|currency }}</span>
+            <br />       
+               已售: <apan>{{ product.saled }}次</apan>
+            <br />
+               库存: <span>{{ product.get_storage  }}</span>
+        {% else %}
+        <br />
+            <span class="coming-soon">{% trans "Coming soon" %}</span>
+            <div style="height:15px;"></div>
+        {% endif %}
+        </div>
+        </div>
+    </a>
+    </div>
+{% endfor %}
+{% show_more %}
+{% endwith %}
+</div>

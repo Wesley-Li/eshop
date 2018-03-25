@@ -1,0 +1,20 @@
+.partner {min-width:1200px;}
+.partnermain {margin:0 10%;text-align:center;height:600px;}
+.partnermain>img {margin:50px 0;}
+.partnertext {font-size:14pt;color:#000000;line-height:25pt;}
+.partimg {margin-left:auto;margin-right:auto;}
+.ver{
+	font-size:20px;
+	border: 1px solid black;
+	width:30px;
+	padding:15px 0;
+	float:left;
+	margin-left:30px;
+}
+
+.innertext
+{
+	text-align:left;
+	padding-top:5px;
+	padding-left:75px;
+}

@@ -1,0 +1,63 @@
+{% extends "accounts/account_form.html" %}
+{% load i18n staticfiles %}
+{% block extra_js %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+	// Add refresh button after field (this can be done in the template as well)
+    $('img.captcha').after(
+            $('<a href="#void" class="captcha-refresh"> 换一张图</a>')
+            );
+
+    // Click-handler for the refresh-link
+    $('.captcha-refresh').click(function(){
+        var $form = $(this).parents('form');
+        var url = location.protocol + "//" + window.location.hostname + ":"
+                  + location.port + "/captcha/refresh/";
+
+        // Make the AJAX-call
+        $.getJSON(url, {}, function(json) {
+            $form.find('input[name="profile_captcha_0"]').val(json.key);
+            $form.find('img.captcha').attr('src', json.image_url);
+        });
+
+        return false;
+    });
+});
+</script>
+<script type="text/javascript" src="{% static 'js/wnisignup.js'%}"></script>
+{% endblock %}
+{% block extra_head %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'js/datetimepicker/jquery.datetimepicker.css' %}"/>
+
+<script type="text/javascript" src="{% static 'js/datetimepicker/jquery.datetimepicker.js' %}"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#id_date_of_birth").val("1985-03-17"); 
+	$('#id_date_of_birth').datetimepicker({
+		dayOfWeekStart : 1,
+		lang:'ch',
+		format : 'Y-m-d',
+		formatDate:'Y-m-d',
+		defaultDate:'1985-03-17',
+		timepicker:false,
+		});
+		$('#id_date_of_birth').datetimepicker({step:10});
+});
+</script>
+{% endblock %}
+{% block main %}
+
+{% if request.user.is_authenticated %}
+    <p>{% trans "You're already logged in. If you'd like to create a new account, you'll need to log out first." %}</p>
+{% else %}
+    {{ block.super }}
+    {% if settings.ACCOUNTS_APPROVAL_REQUIRED %}
+    <p>{% trans "After signing up, your account will be reviewed for approval. You'll receive an email when your account is activated." %}</p>
+    {% elif settings.ACCOUNTS_VERIFICATION_REQUIRED %}
+    <p>{% trans "After signing up, you'll receive an email with a link you need to click, in order to activate your account." %}</p>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

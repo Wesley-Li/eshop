@@ -1,0 +1,28 @@
+{% load mezzanine_tags i18n future %}
+<form action="{% url "search" %}" class="navbar-form navbar-right" role="search" style="margin-left:0;padding-left:0;float:left ! important;margin-top:2px;">
+
+<div class="form-group">
+    <input class="form-control" style="height:25px;" placeholder="{% trans "Search" %}" type="text" name="q" value="{{ request.REQUEST.q }}">
+</div>
+{% comment %}
+{% if search_model_choices %}
+    {% if search_model_choices|length == 1 %}
+    <input type="hidden" name="type" value="{{ search_model_choices.0.1 }}">
+    {% else %}
+    <div class="form-group">
+    <select class="form-control" name="type" style="height:25px;padding:0px 12px;">
+        <option value="">{% trans "Everything" %}</option>
+        {% for verbose_name, model in search_model_choices %}
+        <option value="{{ model }}"
+            {% if model == request.REQUEST.type  %}selected{% endif %}>
+            {{ verbose_name }}
+        </option>
+        {% endfor %}
+    </select>
+    </div>
+    {% endif %}
+{% endif %}
+{% endcomment %}
+<input type="submit" class="btn btn-default" value="{% trans "Go" %}" style="height:25px;padding:0px 12px;">
+
+</form>

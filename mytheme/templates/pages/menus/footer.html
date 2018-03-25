@@ -1,0 +1,49 @@
+{% load i18n future pages_tags %}
+
+{% spaceless %}
+{% if page_branch_in_menu %}
+
+{% for page in page_branch %}
+    {% if page.is_primary %}
+        {% if forloop.first %}
+            <div class="nav-footer" style="width:100%;">
+        {% endif %}
+        {% if page.in_menu %}
+            <ul class="list-unstyled" style="width:30%;margin-left:3%;text-align:center;">
+        {% endif %}
+    {% endif %}
+
+    {% if page.in_menu %}
+        {% if forloop.first and not page.parent.in_menu and not page.is_primary %}
+            <ul class="list-unstyled">
+        {% endif %}
+        <li {% if page.is_current_or_ascendant %}class="active"{% endif %}
+            id="footer-menu-{{ page.html_id }}" style="padding-top:0px;padding-bottom:{% if not page.is_primary %}5px;{% else %}15px;{% endif %}">
+            {% if not page.is_primary %}
+            <a href="{{ page.get_absolute_url }}" style="color:white;font-size:100%;">{{ page.title }}</a>
+            {% else %}
+            <b style="font-size:150%;color:white;">{{ page.title }}</b>
+            {% endif %}</li>
+    {% endif %}
+
+    {% if page.in_menu and page.has_children_in_menu %}{% page_menu page %}{% endif %}
+
+    {% if page.in_menu %}
+        {% if forloop.first and not page.parent.in_menu and not page.is_primary %}
+            </li></ul>
+        {% endif %}
+    {% endif %}
+
+    {% if page.is_primary %}
+        {% if page.in_menu %}
+            </ul>
+        {% endif %}
+        {% if forloop.last %}
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endfor %}
+
+{% endif %}
+{% endspaceless %}

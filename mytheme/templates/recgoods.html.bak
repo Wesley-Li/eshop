@@ -1,0 +1,9 @@
+<iframe src="/shop/recgoods" frameborder="0" style="width:100%;height:500px">
+{% block extra_head %}
+<script type="text/javascript">
+$(document).ready(function(){
+		$('#wnidiv').hide();
+});
+</script>
+{% endblock %}
+</iframe> 

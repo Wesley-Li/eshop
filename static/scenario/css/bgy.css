@@ -1,0 +1,85 @@
+@charset "utf-8";
+/* CSS Document */
+* { margin:0; padding:0; }
+img { border:0px; }
+a { text-decoration:none; color:#595959; }
+a:hover { color:#e91718; }
+a { cursor:pointer; }
+body { background:#FFF; font-size: 12px; }
+body > div { margin: 0px auto; font-family: Arial, Helvetica, sans-serif; }
+ul { list-style-type: none; }
+li { list-style-type: none; }
+* { margin: 0; padding: 0; }
+UL, P { PADDING: 0px; MARGIN: 0px; }
+.bold { font-weight:bold; }
+//.warp3 { height:1600px;background:url(../images/t3_01.jpg) center no-repeat; position:relative; }
+.warp3 { height:900px;position:relative; }
+//wni
+//.warp3 .con1 { position:absolute; top:10px; left:355px; width:280px; height:120px;background:url(../images/title.png) no-repeat;}
+.warp3 .con1 { margin-top:45px;margin-left:40%;width:284px; height:167px;background:url(../images/title.png) no-repeat;}
+
+.warp3 .con2 { position:absolute; top:200px; left:0px; margin:0 10%; min-width:1200px;//width:1200px; }
+.content{width:100%;margin:0 auto;position:relative;overflow:hidden;}
+.drama-slide li{position:absolute;top:26px}
+.drama-slide li.prev{left:0;background:url(../images/t3_03.png) no-repeat;}
+.drama-slide li.next{right:0; background:url(../images/t3_04.png) no-repeat;}
+.drama-slide li a{display:block;width:32px;height:34px;text-indent:-1000em}
+.drama-poster{margin:0 auto;overflow:hidden;position:relative;min-height:700px;}
+.drama-poster ul{width:1200px;min-width:1200px;}
+.drama-poster li{padding:0;float:left;margin-bottom:30px;}
+
+
+@-webkit-keyframes 'nav1ac'{
+0%{-webkit-transform:scale(10,10);opacity:0;}
+
+75%{-webkit-transform:scale(10,10);opacity:0;}
+
+85%{-webkit-transform:scale(.9,.9);opacity:1;}
+
+95%{-webkit-transform:scale(1.1,1.1);opacity:.9;}
+
+100%{-webkit-transform:scale(1,1);opacity:1;}
+
+}
+
+//wni
+.show-poster-3{width:222px;float:left;margin-right:22px; color:#fff;}
+.show-poster-3 .tu{width:222px;height:194px;border-radius:0; background:#000; text-align:center; position:relative; overflow:hidden;}
+.show-poster-3 .tu .pho{width:222px;height:194px;border-radius:100%; text-align:center; /* -webkit-animation: 'nav1ac' 0.8s linear; */}
+//.show-poster-3 .tu .pho img{width:88px;height:88px;}
+
+@-webkit-keyframes 'nav1asc'{
+
+0%{-webkit-transform:rotateZ(360deg) scale(1,1);}
+
+50%{-webkit-transform:rotateZ(370deg) scale(.9,.9);border-color:#fff;}
+
+85%{-webkit-transform:rotateZ(-10deg) scale(1.1,1.1);}
+
+100%{-webkit-transform:rotateZ(0) scale(1,1);}
+
+}
+.show-poster-3:hover .tu .pho,.show-poster-3.current .tu .pho{width:222px; height:194px;}
+.show-poster-3:hover .tu .pho img,.show-poster-3.current .tu .pho img{width:222px; height:194px;}
+.show-poster-3:hover .tu,.show-poster-3.current .tu{width:222px; height:194px; border:3px solid #FFF;-webkit-animation: 'nav1asc' .5s linear;}
+.show-poster-3 .wz{width:222px;line-height:20px;font-size:16pt;text-align:left; cursor:pointer;text-decoration:none;}
+.show-poster-3 a{color:#424242;}
+.show-poster-3 a:hover{text-decoration:none;}
+.show-poster-3 .con{display:none;position:absolute;width:858px; font-size:14px;height:220px;left:0;top:500px;z-index:10px;text-align:center; line-height:24px;margin:0 10%;}
+a.red{ color:#F00;}
+.drama-poster li.current .con{display:block}
+.tu { float:left; width:260px; margin-right:60px; }
+.tupic { display:block; width:260px; height:170px; position:relative; }
+.tupic img { width:260px; height:170px; }
+.icon { display:block; position:absolute; width:99px; height:99px; top:36px; left:80px; background:url(../images/t4_03.png) no-repeat; display:none; }
+.tupic:hover .shadow {position: absolute;width:260px;height:170px;left: 0;bottom: 0;background-color:rgba(0,0,0,0.3);}
+.tupic:hover .icon { display:block; z-index:10; }
+.tu span { display:block; height:60px; line-height:60px; font-size:14px; color:#000; font-weight:bold; text-align:center; }
+//wni
+.warp2 .navbody, .warp3 .navbody, .warp4 .navbody, .warp5 .navbody { margin: 0px auto; width: 1200px; height:824px; overflow:hidden; position:relative; font-family: "Microsoft YaHei"; }
+
+#bottom { margin: 0px auto; width: 100%; height:50px; line-height:50px; background:#e5e5e5; font-family: "Microsoft YaHei"; font-size:18px; color:#545454; text-align:center; }
+#foot { margin: 0px auto; width: 100%; height:60px; line-height:60px; background:#000; font-family: "Microsoft YaHei"; font-size:18px; color:#FFF; text-align:center; }
+#foot a{ color:#FFF;}
+
+img.gray {opacity:0.4;}

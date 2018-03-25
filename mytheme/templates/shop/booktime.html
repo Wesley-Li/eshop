@@ -1,0 +1,17 @@
+
+
+<div class="confirm_part_order_row">
+	<div class="confirm_part_order_row_time">
+		<input type="hidden" name="deliveryTimeTypes" autocomplete="off" value="1" id="delivery_time_type_1398">配送时间：<input type="radio" name="delivery_type_1398" id="instant_send_1398" class="confirm_part_order_row_time_r1" checked="true" autocomplete="off" onclick="selinstant(1398);">
+		<label for="instant_send_1398">即时送餐<span class="confirm_part_order_row_time_tip">配送约1小时</span></label>
+		&nbsp;&nbsp;
+		<input type="radio" name="delivery_type_1398" id="book_send_1398" class="confirm_part_order_row_time_r2" autocomplete="off" onclick="selbook(1398);" checked="checked">
+		<label for="book_send_1398">预约</label>
+		<div class="confirm_part_order_row_time_s">
+			<select name="bookTypes" autocomplete="off" id="book_type_1398" onchange="BookUtil.updateType(1398);"><option value="1">送达时间</option><option value="2">营业即送</option></select>
+			<select name="expectedReceiveDateTypes" autocomplete="off" id="book_date_1398" onchange="BookUtil.updateDate(1398);" onfocus="BookUtil.updateDate(1398);"><option value="">-预约日期-</option><option value="0" selected="selected">今天</option><option value="1">明天</option><option value="2">后天</option></select>
+			<select name="expectedReceiveTimePeriods" autocomplete="off" id="book_time_1398" onchange="BookUtil.updateTime(1398);" onfocus="BookUtil.updateTime(1398);"><option value="" selected="selected">-预约时间-</option><option value="43" selected="selected">21:30</option></select>
+		</div>
+	  <span class="confirm_order_coupon_input_stats" id="s_b_tip_1398"></span>
+	</div>
+</div>

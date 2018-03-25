@@ -1,0 +1,203 @@
+{% extends "shop/checkout.html" %}
+{% load staticfiles i18n future mezzanine_tags %}
+
+{% block extra_head %}
+{{ block.super }}
+<script src="{% static "cartridge/js/shipping_fields.js" %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'js/datetimepicker/jquery.datetimepicker.css' %}"/>
+
+<script type="text/javascript" src="{% static 'js/datetimepicker/jquery.datetimepicker.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'css/jquery-ui-1.10.3.custom.css' %}" >
+<!-- script src="{% static "js/jquery-1.9.1.js" %}"></script-->
+<script src="{% static "js/jquery-ui-1.10.3.custom.min.js" %}"></script>
+<!-- script src="{% static "js/sms_check.js" %}"></script-->
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#id_prefer_time").attr("readonly","readonly");
+	$('#id_prefer_time').datetimepicker({
+		dayOfWeekStart : 1,
+		lang:'ch',
+		startDate:	new Date(),
+		format : 'Y-m-d H:i',
+		minDate : 0,
+		//minTime : 0,
+		});
+		$('#id_prefer_time').datetimepicker({step:10});
+	
+	check = 0;
+	check2 = 6e6;
+	function sleep(milliseconds) {
+		  var start = new Date().getTime();
+		  for (var i = 0; i < 1e7; i++) {
+		    if ((new Date().getTime() - start) > milliseconds){
+		      break;
+		    }
+		  }
+		};	
+	$(".pull-right").click(function(){
+		//alert("shit");
+		
+		if(check!=7e7){
+		$.ajax({
+    		type:'post',
+    		url: '/checkcell/',
+    		async: false,
+    		data:{"cn":$("#id_billing_detail_phone").val()},
+    		success:function(msg){
+    		
+    			if(msg=="1"){
+    				check2 = 5e5;
+    				if(check!=7e7){ 
+    					enablesms();
+    					}
+    			}    		
+    		},
+    		error:function(){
+    		alert("网络异常!");
+    		}
+    		});};
+    	 if(check!=7e7 && check2==5e5){return false;};
+		
+	});
+	
+	$("#auth_first_check").dialog({
+        autoOpen:false,
+        modal:true,
+        draggable:false,
+        open: function(event, ui) { $(".ui-dialog-titlebar").hide();},
+    });
+    
+    function resendaj(){
+    	if ($("#resend").attr("disabled")=="disabled"){return};
+    	//alert("shit");
+    	$.ajax({
+    		type:'post',
+    		url: '/pushsms/',
+    		async: false,
+    		data:{"cn":$("#auth_tel").text(),"tp":0},
+    		success:function(msg){
+    		if(msg == "1"){
+    		 return 1;
+    		}else{
+    		$("#errpane").text("验证码错误,请重新获取!");
+    		};
+    		},
+    		error:function(){
+    		alert("网络异常!请重新获取验证码!");
+    		}
+    		});
+    	resendac();
+
+    };
+    
+    function resendac(){
+    	$("#errpane").text("");
+    	timerMax=10;
+    	//if ($("#resend").css("background")=="#999"){return};
+    	$("#resend").css("background","#999").attr("disabled",true).click(function(event){return false;});
+    	
+    	//$("#countdonw").css('display','block');
+    	var timer = window.setInterval(function() {
+            $("#countdown").text("("+timerMax+"s)");
+            if (timerMax-- <= 0) {
+              window.clearInterval(timer); 
+              //$("#countdonw").css('display','none');
+              $("#countdown").text("");
+              $("#resend").css("background","#42abff").attr("disabled",false);
+              $("#resend").click(function(){resendaj();});
+            }
+          }, 1000);
+    };
+    
+    function submitcheck(){
+    	$("#errpane").text("");
+    	$.ajax({
+    		type:'post',
+    		url: '/pushsms/',
+    		async: false,
+    		data:{"cn":$("#auth_tel").text(),"ca":$("#vcode_input").val(),"tp":1},
+    		success:function(msg){
+    		if(msg == 999){
+    		check = 7e7;
+    		$("#auth_first_check").dialog("close");
+    		$(".pull-right").click();
+    		
+    		}else{
+    		$("#errpane").text("验证码错误,请重新获取!");
+    		//window.location.href="/shop/checkout";
+    		};
+    		},
+    		error:function(){
+    		alert("网络异常!");
+    		}
+    		});
+    };
+    
+    $("#check_auth").click(submitcheck);
+    
+   function enablesms(){	
+	    $("#auth_tel").text($("#id_billing_detail_phone").val());
+    	$("#auth_first_check").dialog("open");
+    	resendac();
+    };
+});
+</script>
+{% endblock %}
+
+{% block fields %}
+{% if request.cart.has_items %}
+{% if not request.user.is_authenticated %}
+{% ifinstalled mezzanine.accounts %}
+<p>
+{% url "login" as login_url %}
+{% url "signup" as signup_url %}
+{% with request.path as next %}
+{% blocktrans %}
+If you have an existing account or would like to create one, please
+<a href="{{ login_url }}?next={{ next }}">log in</a> or
+<a href="{{ signup_url }}?next={{ next }}">sign up</a>.
+{% endblocktrans %}
+{% endwith %}
+</p>
+{% endifinstalled %}
+{% endif %}
+
+{% errors_for form %}
+
+<fieldset>
+    <legend>{% trans "Billing Details" %}</legend>
+    {% fields_for form.billing_detail_fields %}
+    {% fields_for form.additional_instructions_field %}
+</fieldset>
+<div style="display:none">
+<fieldset>
+    <legend>{% trans "Delivery Details" %}</legend>
+    {% fields_for form.same_billing_shipping_field %}
+    <div id="shipping_fields">{% fields_for form.shipping_detail_fields %}</div>
+    {% fields_for form.additional_instructions_field %}
+    {% fields_for form.remember_field %}
+</fieldset>
+</div>
+<!-- 
+<fieldset>
+    <legend>{% trans "Billing Details" %}</legend>
+    {% fields_for form.billing_detail_fields %}
+</fieldset>
+
+<fieldset>
+    <legend>{% trans "Delivery Details" %}</legend>
+    {% fields_for form.same_billing_shipping_field %}
+    <div id="shipping_fields">{% fields_for form.shipping_detail_fields %}</div>
+    {% fields_for form.additional_instructions_field %}
+    {% fields_for form.remember_field %}
+</fieldset>
+-->
+{% if not settings.SHOP_CHECKOUT_STEPS_SPLIT and settings.SHOP_PAYMENT_STEP_ENABLED %}
+{% include "shop/includes/payment_fields.html" %}
+{% endif %}
+
+{% fields_for form.other_fields %}
+{% include "shop/sms_check.html" %}
+{% endif %}
+{% endblock %}

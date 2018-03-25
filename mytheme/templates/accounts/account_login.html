@@ -1,0 +1,44 @@
+{% extends "accounts/account_form.html" %}
+{% load i18n future %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+	// Add refresh button after field (this can be done in the template as well)
+    $('img.captcha').after(
+            $('<a href="#void" class="captcha-refresh"> 换一张图</a>')
+            );
+
+    // Click-handler for the refresh-link
+    $('.captcha-refresh').click(function(){
+        var $form = $(this).parents('form');
+        var url = location.protocol + "//" + window.location.hostname + ":"
+                  + location.port + "/captcha/refresh/";
+
+        // Make the AJAX-call
+        $.getJSON(url, {}, function(json) {
+            $form.find('input[name="login_captcha_0"]').val(json.key);
+            $form.find('img.captcha').attr('src', json.image_url);
+        });
+
+        return false;
+    });
+});
+</script>
+{% endblock %}
+
+{% block main %}
+
+{% if request.user.is_authenticated %}
+    <p>{% trans "您已登录,如果想切换账户,请先登出系统." %}</p>
+{% else %}
+    {{ block.super }}
+    {% url "signup" as signup_url %}
+    <p>{% blocktrans with request.GET.next as next %}If you don't have an account you can <a href="{{ signup_url }}?next={{ next }}">sign up</a> for one now.{% endblocktrans %}</p>
+    {% url "mezzanine_password_reset" as password_reset_url %}
+    {% url "profile_update" as profile_update_url %}
+    {% blocktrans %}<p>You can also <a href="{{ password_reset_url }}?next={{ profile_update_url }}">reset your password</a> if you've forgotten it.</p>{% endblocktrans %}</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "shop/checkout.html" %}
+{% load i18n static shop_tags mezzanine_tags mytheme %}
+{% block extra_head %}
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="{% static "js/wnicheckoutconfirm.js" %}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#id_prefer_time').css('border',0);
+	$("#id_delivery_type").val("{{ request.session.order.delivery_type }}");
+	//$("input[name='back']").css("display","none");
+});
+</script>
+{% endblock %}
+{% block fields %}
+{% if request.cart.has_items %}
+
+<div class="confirmation col-md-6">
+    <div class="panel panel-default">
+    <div class="panel-body">
+    <h3>确认订单</h3>
+    <ul class="list-unstyled">
+
+        {% for field, value in form.billing_detail_fields.values %}
+        <li><label>{{ field }}:</label> {{ value }}</li>
+        {% endfor %}
+        {% for field, value in form.additional_instructions_field.values %}
+        <li><label>{{ field }}:</label> {{ value|linebreaks }}</li>
+        {% endfor %}
+
+    </ul>
+    </div>
+    </div>
+</div>
+<div style="display:none">
+<div class="confirmation col-md-6">
+    <div class="panel panel-default">
+    <div class="panel-body">
+    <h3>{% trans "Shipping Details" %}</h3>
+    <ul class="list-unstyled">
+        {% for field, value in form.shipping_detail_fields.values %}
+        <li><label>{{ field }}:</label> {{ value }}</li>
+        {% endfor %}
+        {% for field, value in form.additional_instructions_field.values %}
+        <li><label>{{ field }}:</label> {{ value }}</li>
+        {% endfor %}
+
+    </ul>
+    </div>
+    </div>
+</div>
+</div>
+{% if settings.SHOP_PAYMENT_STEP_ENABLED %}
+{% comment %}
+<br style="clear:both;">
+<div class="confirmation col-md-6">
+    <div class="panel panel-default">
+    <div class="panel-body">
+    <h3>{% trans "Payment Details" %}</h3>
+    <ul class="list-unstyled">
+
+        {% for field, value in form.card_name_field.values %}
+        <li><label>{{ field }}:</label> {{ value }}</li>
+        {% endfor %}
+
+        {% for field, value in form.card_type_field.values %}
+        <li><label>{{ field }}:</label> {{ value }}</li>
+        {% endfor %}
+
+        <li>
+            {% with form.card_expiry_fields.values as expiry_fields %}
+            {% with expiry_fields.next as month_field %}
+            <label>{{ month_field.0 }}:</label> {{ month_field.1 }}/{{ expiry_fields.next.1 }}
+            {% endwith %}
+            {% endwith %}
+        </li>
+
+        {% for field, value in form.card_fields.values %}
+        <li><label>{{ field }}:</label> {{ value }}</li>
+        {% endfor %}
+
+    </ul>
+    </div>
+    </div>
+</div>
+{% endcomment %}
+{% endif %}
+<br style="clear:both;">
+
+{% for field in form %}{% if forloop.first %}<label>配送时间:</label>&nbsp;&nbsp;{{ field.value }}{% endif %}{% ifequal field.name "pay_type" %}<br><label>支付方式:</label>&nbsp;&nbsp;{{ field.value }}{% endifequal %}{% ifequal field.name "delivery_type" %}<br><label>配送方式:</label>&nbsp;&nbsp;{% with request.session.order.delivery_type as delivery_type %}{{ settings.CENTER_POTS_DICT|wnilookup:delivery_type }}{% endwith %}{% endifequal %}{{ field }}{% endfor %}
+{{ myform.as_p }}
+
+{% endif %}
+{% endblock %}

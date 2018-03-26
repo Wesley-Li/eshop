@@ -9,6 +9,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(os.path.join(PROJECT_ROOT, '..'))
 if PROJECT_DIR not in sys.path:
     sys.path.append(PROJECT_DIR)
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
 tmp='/usr/local/lib/python2.7/site-packages'
 if tmp not in sys.path:
     sys.path.append(tmp)

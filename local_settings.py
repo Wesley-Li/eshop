@@ -18,9 +18,9 @@ DATABASES = {
         # DB name or path to database file if using sqlite3.
         "NAME": "efood",
         # Not used with sqlite3.
-        "USER": "root",
+        "USER": "dbadmin",
         # Not used with sqlite3.
-        "PASSWORD": "root",
+        "PASSWORD": "yijiaoqaz",
         # Set to empty string for localhost. Not used with sqlite3.
         "HOST": "",
         # Set to empty string for default. Not used with sqlite3.
